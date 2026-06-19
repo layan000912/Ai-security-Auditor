@@ -1,0 +1,12 @@
+.ip-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 16px; cursor:pointer; border-bottom:1px solid var(--border);
+  transition:background .12s;
+}
+.ip-row:hover   { background:rgba(255,255,255,.04); }
+.ip-row.active  { background:linear-gradient(90deg,rgba(124,77,255,.15),rgba(124,77,255,.04)); border-left:3px solid var(--purple); }
+.gauge-ring {
+  width:90px; height:90px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; font-weight:700; flex-shrink:0;
+}

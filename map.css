@@ -1,0 +1,5 @@
+#mapContainer { height: 420px; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+.leaflet-popup-content-wrapper { background: #191b38; border: 1px solid rgba(255,255,255,.1); border-radius: 10px; color: #e8eaf6; box-shadow: 0 4px 20px rgba(0,0,0,.5); }
+.leaflet-popup-tip { background: #191b38; }
+.leaflet-popup-content { font-family: 'Inter', sans-serif; font-size: 12px; }
+.abuse-badge { display:inline-block; padding:2px 8px; border-radius:20px; font-size:10px; font-weight:700; }

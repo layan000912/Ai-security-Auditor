@@ -1,0 +1,15 @@
+.active-period { background:rgba(124,77,255,.2)!important; border-color:rgba(124,77,255,.4)!important; color:var(--txt1)!important; }
+.heat-cell {
+  flex:1; height:22px; border-radius:3px; cursor:default;
+  transition:opacity .15s;
+  position:relative;
+}
+.heat-cell:hover::after {
+  content: attr(data-tip);
+  position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%);
+  background:#191b38; border:1px solid rgba(255,255,255,.1); border-radius:6px;
+  padding:4px 8px; font-size:10px; color:#e8eaf6; white-space:nowrap; z-index:10;
+  pointer-events:none;
+}
+.heat-row { display:flex; gap:2px; align-items:center; }
+.heat-label { width:52px; font-size:10px; color:var(--txt3); flex-shrink:0; text-align:right; padding-right:8px; }

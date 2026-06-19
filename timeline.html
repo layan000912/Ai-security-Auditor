@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% set active = 'timeline' %}
+
+{% block page_title %}Activity Timeline{% endblock %}
+{% block title %}Activity Timeline{% endblock %}
+{% block breadcrumb %}Timeline{% endblock %}
+
+{% block topbar_actions %}
+<select class="select-sm" id="scanSel" onchange="loadTimeline()" style="width:220px">
+  <option value="">Select scan…</option>
+</select>
+<div style="display:flex;gap:4px;margin-left:8px;" id="periodBtns">
+  <button class="btn btn-ghost btn-sm active-period" data-period="all" onclick="setPeriod('all',this)">All</button>
+  <button class="btn btn-ghost btn-sm" data-period="day"   onclick="setPeriod('day',this)">Day</button>
+  <button class="btn btn-ghost btn-sm" data-period="week"  onclick="setPeriod('week',this)">Week</button>
+  <button class="btn btn-ghost btn-sm" data-period="month" onclick="setPeriod('month',this)">Month</button>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<!-- Stacked area chart -->
+<div class="card mb-20">
+  <div class="card-header">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="8 8 12 4 16 8"/><polyline points="16 16 12 20 8 16"/></svg>
+      Event Frequency Over Time
+    </div>
+    <div style="display:flex;gap:16px;">
+      <div style="display:flex;align-items:center;gap:6px;"><div style="width:10px;height:3px;background:var(--purple);border-radius:2px"></div><span style="font-size:11px;color:var(--txt2)">Suspicious</span></div>
+      <div style="display:flex;align-items:center;gap:6px;"><div style="width:10px;height:3px;background:var(--pink);border-radius:2px"></div><span style="font-size:11px;color:var(--txt2)">Critical</span></div>
+    </div>
+  </div>
+  <div style="height:240px">
+    <canvas id="areaChart"></canvas>
+  </div>
+</div>
+
+<!-- Hourly heatmap -->
+<div class="card mb-20">
+  <div class="card-header">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Hourly Activity Heatmap
+    </div>
+    <div id="peakHour" style="font-size:11px;color:var(--txt3)"></div>
+  </div>
+  <div id="heatmapWrap" style="overflow-x:auto;">
+    <div id="heatmap" style="display:flex;flex-direction:column;gap:4px;min-width:600px;padding:4px 0;"></div>
+  </div>
+  <!-- Hour labels -->
+  <div id="hourLabels" style="display:flex;gap:2px;margin-top:4px;min-width:600px;padding:0 60px 0 0;"></div>
+</div>
+
+<!-- Timeline event list -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="12 8 12 12 14 14"/><path d="M3.05 11a9 9 0 1 0 .5-4"/></svg>
+      Event Log
+    </div>
+    <span id="eventCount" style="font-size:11px;color:var(--txt3)"></span>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>IP</th>
+          <th>Username</th>
+          <th>Service</th>
+          <th>Status</th>
+          <th>Rule Reason</th>
+        </tr>
+      </thead>
+      <tbody id="eventBody">
+        <tr><td colspan="6"><div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="12 8 12 12 14 14"/></svg><p>Select a scan</p></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+

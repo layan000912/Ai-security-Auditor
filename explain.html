@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% set active = 'explain' %}
+
+{% block page_title %}SHAP Explanation{% endblock %}
+{% block title %}SHAP Explanation{% endblock %}
+{% block breadcrumb %}SHAP Explain{% endblock %}
+
+{% block topbar_actions %}
+<select class="select-sm" id="scanSel" onchange="loadExplain()" style="width:220px">
+  <option value="">Select scan…</option>
+</select>
+{% endblock %}
+
+{% block content %}
+
+<!-- SHAP Summary Chart (matplotlib) -->
+<div class="card mb-20" id="shapSummaryCard" style="display:none">
+  <div class="card-header">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      SHAP Summary Plot
+    </div>
+    <span style="font-size:10px;color:var(--purple);background:rgba(124,77,255,.12);padding:3px 10px;border-radius:20px;font-weight:600">matplotlib</span>
+  </div>
+  <img id="shapSummaryImg" src="" alt="SHAP Summary"
+       style="width:100%;border-radius:8px;display:block">
+</div>
+
+<!-- Feature importance chart (Chart.js) -->
+<div class="card mb-20">
+  <div class="card-header">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Global Feature Importance
+    </div>
+    <span style="font-size:11px;color:var(--txt3)" id="modelLabel"></span>
+  </div>
+  <div style="height:260px">
+    <canvas id="featureChart"></canvas>
+  </div>
+</div>
+
+<!-- Suspicious entries table with expandable SHAP rows -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+      Suspicious Entries — SHAP Detail
+    </div>
+    <span style="font-size:11px;color:var(--txt3)" id="entryCount"></span>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>IP / Asset</th>
+          <th>Service</th>
+          <th>Rule Reason</th>
+          <th>Risk</th>
+          <th>Expand</th>
+        </tr>
+      </thead>
+      <tbody id="shapBody">
+        <tr><td colspan="6">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p>Select a scan to view SHAP explanations</p>
+          </div>
+        </td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+

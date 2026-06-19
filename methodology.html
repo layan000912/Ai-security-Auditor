@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المنهجية — AI Security Auditor</title>
+<link rel="stylesheet" href="/static/css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+<style>
+.page-title {
+  text-align:center; padding:48px 0 24px;
+}
+.page-title h2 {
+  font-family:'Orbitron',monospace; font-size:26px; color:var(--accent);
+  letter-spacing:3px; text-shadow:0 0 20px rgba(0,229,255,.4);
+}
+.page-title p { color:var(--text-dim); font-size:15px; margin-top:8px; }
+
+/* ── Pipeline ── */
+.pipeline-wrap { max-width:960px; margin:0 auto; padding:0 24px 60px; }
+
+.pipeline {
+  display:flex; flex-direction:column; gap:0; position:relative;
+}
+
+.pipe-step {
+  display:grid; grid-template-columns:80px 1fr; gap:24px;
+  align-items:start; position:relative;
+}
+.pipe-step:not(:last-child)::after {
+  content:''; position:absolute; right:39px; top:80px;
+  width:2px; height:calc(100% - 56px);
+  background:linear-gradient(to bottom, var(--accent), transparent);
+  z-index:0;
+}
+
+.pipe-number {
+  width:80px; height:80px; border-radius:50%;
+  border:2px solid var(--accent);
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column; flex-shrink:0;
+  background:rgba(0,229,255,.06);
+  box-shadow:var(--glow);
+  position:relative; z-index:1;
+}
+.pipe-number .num {
+  font-family:'Orbitron',monospace; font-size:22px; font-weight:900;
+  color:var(--accent); line-height:1;
+}
+.pipe-number .icon { font-size:18px; margin-top:2px; }
+
+.pipe-content {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:14px; padding:22px 26px; margin-bottom:24px;
+}
+.pipe-content h3 {
+  font-size:17px; font-weight:700; color:var(--text); margin-bottom:6px;
+}
+.pipe-content .pipe-sub {
+  font-size:12px; font-family:'JetBrains Mono',monospace;
+  color:var(--accent); margin-bottom:10px; letter-spacing:1px;
+}
+.pipe-content p { color:var(--text-dim); font-size:14px; line-height:1.7; }
+.pipe-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+.pipe-tag {
+  background:rgba(0,229,255,.08); border:1px solid rgba(0,229,255,.25);
+  color:var(--accent); border-radius:6px; padding:3px 10px;
+  font-size:11px; font-family:'JetBrains Mono',monospace;
+}
+
+/* ── Models Table ── */
+.section-title {
+  font-family:'Orbitron',monospace; font-size:14px; color:var(--accent);
+  letter-spacing:2px; margin:48px 0 18px; text-align:center;
+}
+
+.model-table { width:100%; border-collapse:collapse; }
+.model-table th {
+  background:rgba(0,229,255,.08); color:var(--accent);
+  font-family:'JetBrains Mono',monospace; font-size:11px;
+  padding:12px 16px; text-align:center; border-bottom:1px solid var(--border);
+  letter-spacing:1px;
+}
+.model-table td {
+  padding:12px 16px; border-bottom:1px solid rgba(14,61,82,.5);
+  color:var(--text); font-size:13px; text-align:center;
+}
+.model-table tr:last-child td { border-bottom:none; }
+.model-table tr:hover td { background:rgba(0,229,255,.04); }
+.check { color:var(--accent3); font-size:16px; }
+.cross { color:var(--accent2); font-size:16px; }
+.partial { color:var(--yellow); font-size:16px; }
+
+/* ── Tech Stack ── */
+.tech-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:16px; margin-top:24px;
+}
+.tech-card {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:12px; padding:18px 16px; text-align:center;
+  transition:border-color .2s, box-shadow .2s;
+}
+.tech-card:hover { border-color:var(--accent); box-shadow:var(--glow); }
+.tech-card .tc-icon { font-size:28px; margin-bottom:8px; }
+.tech-card .tc-name { font-size:13px; font-weight:700; color:var(--text); }
+.tech-card .tc-role { font-size:11px; color:var(--text-dim); margin-top:4px; }
+
+/* ── System Arch ── */
+.arch-box {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:14px; padding:30px; margin-top:24px;
+}
+.arch-row {
+  display:flex; justify-content:center; align-items:center;
+  gap:10px; flex-wrap:wrap; margin-bottom:10px;
+}
+.arch-node {
+  background:rgba(0,229,255,.07); border:1px solid rgba(0,229,255,.3);
+  border-radius:8px; padding:8px 16px; font-size:12px;
+  font-family:'JetBrains Mono',monospace; color:var(--text);
+}
+.arch-arrow { color:var(--accent); font-size:20px; }
+.arch-sep {
+  width:100%; height:1px; background:var(--border); margin:10px 0;
+}
+
+.table-wrap { background:var(--panel); border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+</style>
+</head>
+<body>
+<script>if(localStorage.getItem('theme')==='light')document.body.classList.add('light-mode');</script>
+
+<!-- Toast -->
+<div id="toast"><span id="toastMsg"></span></div>
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    <img src="/static/logo_header.svg" class="logo-img" alt="AI Security Auditor Logo">
+    <div class="logo-text">
+      <h1>AI SECURITY AUDITOR</h1>
+      <span>THREAT DETECTION SYSTEM v10</span>
+    </div>
+  </div>
+  <nav>
+    <a class="nav-link" href="/">الرئيسية</a>
+    <a class="nav-link" href="/history">السجل</a>
+    <a class="nav-link" href="/explain">التفسير</a>
+    <a class="nav-link" href="/timeline">التايملاين</a>
+    <a class="nav-link" href="/alerts">التنبيهات</a>
+    <a class="nav-link" href="/map">الخريطة</a>
+    <a class="nav-link" href="/monitor">المراقبة</a>
+    <a class="nav-link" href="/ip-analytics">تحليل IP</a>
+    <a class="nav-link active" href="/methodology">المنهجية</a>
+    <a class="nav-link" href="/evaluation">التقييم</a>
+    <a class="nav-link" href="/dataset-stats">الإحصائيات</a>
+  </nav>
+  <div class="header-meta">
+    <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع">
+      <span class="icon-dark">🌙</span>
+      <span class="icon-light">☀️</span>
+    </button>
+    <span class="status-dot"></span>
+    <span id="headerClock">--:--:--</span>
+  </div>
+</header>
+
+<div class="page-title">
+  <h2>منهجية النظام</h2>
+  <p>Architecture &amp; Methodology — كيف يعمل نظام كشف التهديدات</p>
+</div>
+
+<div class="pipeline-wrap">
+
+  <!-- ── Pipeline Steps ── -->
+  <div class="pipeline">
+
+    <div class="pipe-step">
+      <div class="pipe-number">
+        <span class="num">01</span>
+        <span class="icon">📂</span>
+      </div>
+      <div class="pipe-content">
+        <div class="pipe-sub">INPUT LAYER</div>
+        <h3>استقبال الملف وتحديد نوعه</h3>
+        <p>يقبل النظام ملفات السجلات بصيغ متعددة: CSV, JSON, LOG, SYSLOG, TXT. يتم التحقق من الصيغة أولاً، ثم اكتشاف نوع المحتوى تلقائياً من الامتداد أو من قراءة أول 500 حرف من الملف.</p>
+        <div class="pipe-tags">
+          <span class="pipe-tag">CSV</span>
+          <span class="pipe-tag">JSON</span>
+          <span class="pipe-tag">Syslog</span>
+          <span class="pipe-tag">LOG / TXT</span>
+          <span class="pipe-tag">Max 16MB</span>
+          <span class="pipe-tag">Rate Limiting</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipe-step">
+      <div class="pipe-number">
+        <span class="num">02</span>
+        <span class="icon">🔧</span>
+      </div>
+      <div class="pipe-content">
+        <div class="pipe-sub">PREPROCESSING</div>
+        <h3>المعالجة المسبقة وتوحيد البيانات</h3>
+        <p>يُحلَّل الملف حسب نوعه — لكل نوع محلِّل خاص: CSV يكتشف الفاصل تلقائياً، JSON يسطّح السجلات المتداخلة، Syslog يُطبّق تعبيرات RFC 3164 لاستخراج الحقول. بعدها تُوحَّد أسماء الأعمدة، تُحذف المكررات، وتُملأ القيم الفارغة.</p>
+        <div class="pipe-tags">
+          <span class="pipe-tag">pandas read_csv</span>
+          <span class="pipe-tag">RFC 3164 Regex</span>
+          <span class="pipe-tag">Label Encoding</span>
+          <span class="pipe-tag">StandardScaler</span>
+          <span class="pipe-tag">Drop Duplicates</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipe-step">
+      <div class="pipe-number">
+        <span class="num">03</span>
+        <span class="icon">⚙️</span>
+      </div>
+      <div class="pipe-content">
+        <div class="pipe-sub">RULE-BASED DETECTION</div>
+        <h3>محرك القواعد — الكشف بالأنماط</h3>
+        <p>يطبّق مجموعة من القواعد الثابتة لتصنيف السجلات قبل تدريب النموذج: كثرة محاولات تسجيل الدخول الفاشلة، الأسماء المشبوهة (root, admin, guest)، التكرار المفرط لعنوان IP، والكلمات الدلالية (failed, denied, invalid). نتيجة كل سطر محفوظة في عمود <code>rule_flag</code>.</p>
+        <div class="pipe-tags">
+          <span class="pipe-tag">Brute-Force Detection</span>
+          <span class="pipe-tag">Suspicious Users</span>
+          <span class="pipe-tag">IP Frequency</span>
+          <span class="pipe-tag">Keyword Matching</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipe-step">
+      <div class="pipe-number">
+        <span class="num">04</span>
+        <span class="icon">🧠</span>
+      </div>
+      <div class="pipe-content">
+        <div class="pipe-sub">AI MODELS — TRAINING & PREDICTION</div>
+        <h3>نماذج الذكاء الاصطناعي</h3>
+        <p>تُدرَّب ثلاثة نماذج بالتوازي على 80% من البيانات، ويُقيَّم أداؤها على الـ 20% المتبقية. يُختار النموذج الأفضل تلقائياً بناءً على أعلى F1-Score، ويُستخدم لتصنيف كامل البيانات. يُستخدم SHAP لتفسير قرارات Random Forest.</p>
+        <div class="pipe-tags">
+          <span class="pipe-tag">Isolation Forest</span>
+          <span class="pipe-tag">Random Forest</span>
+          <span class="pipe-tag">DBSCAN</span>
+          <span class="pipe-tag">train_test_split 80/20</span>
+          <span class="pipe-tag">SHAP Explainability</span>
+          <span class="pipe-tag">AUC-ROC</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipe-step">
+      <div class="pipe-number">
+        <span class="num">05</span>
+        <span class="icon">🔗</span>
+      </div>
+      <div class="pipe-content">
+        <div class="pipe-sub">FUSION LAYER</div>
+        <h3>دمج النتائج — OR Logic</h3>
+        <p>يُدمج حكم محرك القواعد (<code>rule_flag</code>) مع حكم النموذج (<code>ai_flag</code>) بعملية OR منطقية لإنتاج عمود <code>suspicious</code> النهائي. أي سجل علّمته القواعد أو النموذج — حتى واحد منهما — يُعتبر مشبوهاً.</p>
+        <div class="pipe-tags">
+          <span class="pipe-tag">Logical OR</span>
+          <span class="pipe-tag">rule_flag | ai_flag</span>
+          <span class="pipe-tag">MITRE ATT&amp;CK Mapping</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pipe-step">
+      <div class="pipe-number">
+        <span class="num">06</span>
+        <span class="icon">📊</span>
+      </div>
+      <div class="pipe-content">
+        <div class="pipe-sub">OUTPUT LAYER</div>
+        <h3>لوحة التحكم والتصدير</h3>
+        <p>تُعرض النتائج في dashboard تفاعلي: KPI cards، Risk Gauge، مقارنة النماذج، جدول الأنشطة المشبوهة مع بحث وفلاتر. يدعم النظام التصدير لـ PDF وExcel، ومراقبة السجلات الحية عبر WebSocket.</p>
+        <div class="pipe-tags">
+          <span class="pipe-tag">Chart.js</span>
+          <span class="pipe-tag">PDF — ReportLab</span>
+          <span class="pipe-tag">Excel — openpyxl</span>
+          <span class="pipe-tag">WebSocket — SocketIO</span>
+          <span class="pipe-tag">GeoIP Map</span>
+          <span class="pipe-tag">Alert Engine</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /pipeline -->
+
+  <!-- ── Model Comparison Table ── -->
+  <div class="section-title">MODEL COMPARISON — مقارنة النماذج</div>
+  <div class="table-wrap">
+    <table class="model-table">
+      <thead>
+        <tr>
+          <th>الخاصية</th>
+          <th>Isolation Forest</th>
+          <th>Random Forest</th>
+          <th>DBSCAN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>النوع</td>
+          <td>Unsupervised</td>
+          <td>Supervised</td>
+          <td>Unsupervised</td>
+        </tr>
+        <tr>
+          <td>يحتاج بيانات موسومة</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td>مقاوم لـ Imbalanced Data</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="partial">◑</span> class_weight</td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>سرعة التدريب</td>
+          <td>سريع</td>
+          <td>متوسط</td>
+          <td>متوسط</td>
+        </tr>
+        <tr>
+          <td>قابل للتفسير (SHAP)</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td>يعمل بدون labels</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>يكتشف Anomalies جديدة</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="partial">◑</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>يُختار للتنبؤ النهائي</td>
+          <td colspan="3" style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim)">
+            يُختار تلقائياً الأعلى F1-Score من بين الثلاثة
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── Tech Stack ── -->
+  <div class="section-title">TECH STACK — المكدس التقني</div>
+  <div class="tech-grid">
+    <div class="tech-card">
+      <div class="tc-icon">🐍</div>
+      <div class="tc-name">Python 3.x</div>
+      <div class="tc-role">Backend Language</div>
+    </div>
+    <div class="tech-card">
+      <div class="tc-icon">⚗️</div>
+      <div class="tc-name">Flask + SocketIO</div>
+      <div class="tc-role">Web Framework</div>
+    </div>
+    <div class="tech-card">
+      <div class="tc-icon">🤖</div>
+      <div class="tc-name">scikit-learn</div>
+      <div class="tc-role">ML Models</div>
+    </div>
+    <div class="tech-card">
+      <div class="tc-icon">🔍</div>
+      <div class="tc-name">SHAP</div>
+      <div class="tc-role">Model Explainability</div>
+    </div>
+    <div class="tech-card">
+      <div class="tc-icon">🐼</div>
+      <div class="tc-name">pandas + NumPy</div>
+      <div class="tc-role">Data Processing</div>
+    </div>
+    <div class="tech-card">
+      <div class="tc-icon">📈</div>
+      <div class="tc-name">Chart.js</div>
+      <div class="tc-role">Data Visualization</div>
+    </div>
+    <div class="tech-card">
+      <div class="tc-icon">🗄️</div>
+      <div class="tc-name">SQLite</div>
+      <div class="tc-role">Local Database</div>
+    </div>
+    <div class="tech-card">
+      <div class="tc-icon">📄</div>
+      <div class="tc-name">ReportLab</div>
+      <div class="tc-role">PDF Export</div>
+    </div>
+    <div class="tech-card">
+      <div class="tc-icon">📊</div>
+      <div class="tc-name">openpyxl</div>
+      <div class="tc-role">Excel Export</div>
+    </div>
+    <div class="tech-card">
+      <div class="tc-icon">🛡️</div>
+      <div class="tc-name">MITRE ATT&amp;CK</div>
+      <div class="tc-role">Threat Framework</div>
+    </div>
+    <div class="tech-card">
+      <div class="tc-icon">🌍</div>
+      <div class="tc-name">GeoIP + Leaflet</div>
+      <div class="tc-role">IP Geolocation</div>
+    </div>
+    <div class="tech-card">
+      <div class="tc-icon">⚡</div>
+      <div class="tc-name">WebSocket</div>
+      <div class="tc-role">Live Monitoring</div>
+    </div>
+  </div>
+
+  <!-- ── System Architecture ── -->
+  <div class="section-title">SYSTEM ARCHITECTURE</div>
+  <div class="arch-box">
+    <div class="arch-row">
+      <div class="arch-node">📂 Log File (CSV/JSON/LOG)</div>
+      <div class="arch-arrow">←</div>
+      <div class="arch-node">🌐 HTTP POST /analyze</div>
+      <div class="arch-arrow">←</div>
+      <div class="arch-node">🖥️ Browser</div>
+    </div>
+    <div class="arch-sep"></div>
+    <div class="arch-row">
+      <div class="arch-node">preprocess.py</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">rules_engine.py</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">ai_model.py (IF + RF + DBSCAN)</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">combined_flag()</div>
+    </div>
+    <div class="arch-sep"></div>
+    <div class="arch-row">
+      <div class="arch-node">build_summary()</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">shap_explainer.py</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">mitre.py</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">alerts.py</div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">SQLite</div>
+    </div>
+    <div class="arch-sep"></div>
+    <div class="arch-row">
+      <div class="arch-node">📊 Dashboard</div>
+      <div class="arch-arrow">|</div>
+      <div class="arch-node">🗺️ GeoIP Map</div>
+      <div class="arch-arrow">|</div>
+      <div class="arch-node">🔬 SHAP Explain</div>
+      <div class="arch-arrow">|</div>
+      <div class="arch-node">📄 PDF / Excel</div>
+      <div class="arch-arrow">|</div>
+      <div class="arch-node">⚡ Live Monitor</div>
+    </div>
+  </div>
+
+</div><!-- /pipeline-wrap -->
+
+<script>
+function toggleTheme(){
+  document.body.classList.toggle('light-mode');
+  localStorage.setItem('theme', document.body.classList.contains('light-mode')?'light':'dark');
+}
+setInterval(()=>{
+  const d=new Date();
+  const el=document.getElementById('headerClock');
+  if(el) el.textContent=d.toLocaleTimeString('ar-SA');
+},1000);
+</script>
+</body>
+</html>

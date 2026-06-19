@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% set active = 'evaluation' %}
+
+{% block page_title %}Model Evaluation{% endblock %}
+{% block title %}Model Evaluation{% endblock %}
+{% block breadcrumb %}Evaluation{% endblock %}
+
+{% block topbar_actions %}
+<select class="select-sm" id="scanSel" onchange="loadEval()" style="width:220px">
+  <option value="">Select scan…</option>
+</select>
+{% endblock %}
+
+{% block content %}
+
+<!-- KPI Row -->
+<div class="kpi-grid mb-20">
+  <div class="kpi-card c1">
+    <div class="kpi-glow"></div>
+    <div class="kpi-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    </div>
+    <div class="kpi-label">Accuracy</div>
+    <div class="kpi-value" id="kpiAcc">—</div>
+  </div>
+  <div class="kpi-card c2">
+    <div class="kpi-glow"></div>
+    <div class="kpi-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    </div>
+    <div class="kpi-label">F1 Score</div>
+    <div class="kpi-value" id="kpiF1">—</div>
+  </div>
+  <div class="kpi-card c3">
+    <div class="kpi-glow"></div>
+    <div class="kpi-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
+    <div class="kpi-label">Precision</div>
+    <div class="kpi-value" id="kpiPrec">—</div>
+  </div>
+  <div class="kpi-card c4">
+    <div class="kpi-glow"></div>
+    <div class="kpi-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+    </div>
+    <div class="kpi-label">Recall</div>
+    <div class="kpi-value" id="kpiRec">—</div>
+  </div>
+</div>
+
+<!-- Charts row -->
+<div class="grid-2 mb-20">
+
+  <!-- Confusion matrix -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Confusion Matrix
+      </div>
+      <span id="winnerBadge" style="font-size:11px;color:var(--purple)"></span>
+    </div>
+    <div id="confMatrix" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;">
+      <div class="cm-cell" id="cmTP" style="background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.2);border-radius:10px;padding:20px;text-align:center;">
+        <div style="font-size:10px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">True Positive</div>
+        <div style="font-size:32px;font-weight:700;color:var(--green);letter-spacing:-1px" id="valTP">—</div>
+        <div style="font-size:10px;color:var(--txt3);margin-top:4px">Correctly flagged suspicious</div>
+      </div>
+      <div class="cm-cell" id="cmFP" style="background:rgba(255,23,68,.10);border:1px solid rgba(255,23,68,.2);border-radius:10px;padding:20px;text-align:center;">
+        <div style="font-size:10px;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">False Positive</div>
+        <div style="font-size:32px;font-weight:700;color:var(--red);letter-spacing:-1px" id="valFP">—</div>
+        <div style="font-size:10px;color:var(--txt3);margin-top:4px">Normal flagged as suspicious</div>
+      </div>
+      <div class="cm-cell" id="cmFN" style="background:rgba(255,171,0,.10);border:1px solid rgba(255,171,0,.2);border-radius:10px;padding:20px;text-align:center;">
+        <div style="font-size:10px;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">False Negative</div>
+        <div style="font-size:32px;font-weight:700;color:var(--amber);letter-spacing:-1px" id="valFN">—</div>
+        <div style="font-size:10px;color:var(--txt3);margin-top:4px">Suspicious missed</div>
+      </div>
+      <div class="cm-cell" id="cmTN" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:20px;text-align:center;">
+        <div style="font-size:10px;font-weight:600;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">True Negative</div>
+        <div style="font-size:32px;font-weight:700;color:var(--txt2);letter-spacing:-1px" id="valTN">—</div>
+        <div style="font-size:10px;color:var(--txt3);margin-top:4px">Correctly flagged normal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Model comparison bar chart -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Model Comparison
+      </div>
+    </div>
+    <div style="height:260px">
+      <canvas id="compChart"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<!-- Baseline comparison table -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Baseline Comparison
+    </div>
+    <div style="display:flex;gap:8px;font-size:11px;color:var(--txt3);">
+      <span>Train: <strong id="trainSz" style="color:var(--txt1)">—</strong></span>
+      <span>Test: <strong id="testSz" style="color:var(--txt1)">—</strong></span>
+    </div>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Baseline</th>
+          <th>Current Model</th>
+          <th>Improvement</th>
+        </tr>
+      </thead>
+      <tbody id="baselineBody">
+        <tr><td colspan="4"><div class="empty-state"><p>Select a scan</p></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+

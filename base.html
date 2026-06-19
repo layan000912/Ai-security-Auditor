@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block page_title %}AI Security Auditor v10{% endblock %} — AI Security Auditor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+<div class="shell">
+
+  <!-- ── Sidebar ─────────────────────────────────────────────────────────────── -->
+  <aside class="sidebar">
+
+    <div class="sb-logo">
+      <div class="sb-logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div class="sb-logo-text">
+        <strong>AI Security Auditor</strong>
+        <span>v10 · SOAR Edition</span>
+      </div>
+    </div>
+
+    <div class="sb-user">
+      <div class="sb-avatar">SA</div>
+      <div class="sb-user-info">
+        <div class="sb-user-name">Security Analyst</div>
+        <div class="sb-user-role">SOC Tier 2</div>
+      </div>
+    </div>
+
+    <nav class="sb-nav">
+      <div class="sb-group-label" data-i18n="Main">Main</div>
+
+      <a href="/" class="sb-link {% if active=='dashboard' %}active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span data-i18n="Dashboard">Dashboard</span>
+      </a>
+
+      <a href="/history" class="sb-link {% if active=='history' %}active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="12 8 12 12 14 14"/><path d="M3.05 11a9 9 0 1 0 .5-4"/><polyline points="3 3 3 7 7 7"/></svg>
+        <span data-i18n="History">History</span>
+        <span class="sb-badge" id="historyBadge" style="display:none"></span>
+      </a>
+
+      <a href="/alerts" class="sb-link {% if active=='alerts' %}active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span data-i18n="Alerts">Alerts</span>
+        <span class="sb-badge" id="alertBadge" style="display:none"></span>
+      </a>
+
+      <div class="sb-group-label" data-i18n="Analysis">Analysis</div>
+
+      <a href="/explain" class="sb-link {% if active=='explain' %}active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span data-i18n="SHAP Explain">SHAP Explain</span>
+      </a>
+
+      <a href="/map" class="sb-link {% if active=='map' %}active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+        <span data-i18n="Geo Map">Geo Map</span>
+      </a>
+
+      <a href="/timeline" class="sb-link {% if active=='timeline' %}active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="8 8 12 4 16 8"/><polyline points="16 16 12 20 8 16"/></svg>
+        <span data-i18n="Timeline">Timeline</span>
+      </a>
+
+      <a href="/ip-analytics" class="sb-link {% if active=='ip' %}active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span data-i18n="IP Analytics">IP Analytics</span>
+      </a>
+
+      <a href="/monitor" class="sb-link {% if active=='monitor' %}active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <span data-i18n="Real-Time Monitor">Real-Time Monitor</span>
+      </a>
+
+      <a href="/evaluation" class="sb-link {% if active=='evaluation' %}active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span data-i18n="MITRE / Evaluation">MITRE / Evaluation</span>
+      </a>
+
+      <a href="/dataset-stats" class="sb-link {% if active=='dataset' %}active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        <span data-i18n="Dataset Stats">Dataset Stats</span>
+      </a>
+
+      <div class="sb-group-label" data-i18n="SOAR">SOAR</div>
+
+      <a href="/soar" class="sb-link {% if active=='soar' %}active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        <span data-i18n="SOAR Operations">SOAR Operations</span>
+      </a>
+    </nav>
+
+  </aside>
+
+  <!-- ── Topbar ───────────────────────────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="topbar-title">{% block title %}Dashboard{% endblock %}</div>
+    <div class="topbar-breadcrumb">
+      <a href="/" data-i18n="Home">Home</a>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      {% block breadcrumb %}Dashboard{% endblock %}
+    </div>
+    <div class="topbar-actions">
+      {% block topbar_actions %}{% endblock %}
+      <button class="btn-lang" id="langToggle" onclick="toggleLang()" title="Toggle Language / تغيير اللغة">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span id="langLabel">AR</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Content ──────────────────────────────────────────────────────────────── -->
+  <main class="content" id="mainContent">
+    {% block content %}{% endblock %}
+  </main>
+
+</div><!-- .shell -->
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

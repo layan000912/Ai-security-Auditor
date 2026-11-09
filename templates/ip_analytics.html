@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% set active = 'ip' %}
+
+{% block page_title %}IP Analytics{% endblock %}
+{% block title %}IP Analytics{% endblock %}
+{% block breadcrumb %}IP Analytics{% endblock %}
+
+{% block topbar_actions %}
+<select class="select-sm" id="scanSel" onchange="loadIPs()" style="width:220px">
+  <option value="">Select scan…</option>
+</select>
+{% endblock %}
+
+{% block content %}
+
+<div style="display:grid;grid-template-columns:280px 1fr;gap:16px;height:calc(100vh - 140px);min-height:500px;">
+
+  <!-- Left: IP list -->
+  <div class="card" style="display:flex;flex-direction:column;padding:0;overflow:hidden;">
+    <div style="padding:14px 16px;border-bottom:1px solid var(--border);flex-shrink:0;">
+      <div class="card-title" style="margin-bottom:10px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        IP Addresses
+      </div>
+      <input class="input-sm" id="ipSearch" placeholder="Filter IPs…" oninput="filterIPs()">
+    </div>
+    <div id="ipList" style="flex:1;overflow-y:auto;">
+      <div class="empty-state"><p>Select a scan</p></div>
+    </div>
+  </div>
+
+  <!-- Right: IP detail -->
+  <div id="ipDetail" style="display:flex;flex-direction:column;gap:16px;overflow-y:auto;">
+    <div class="card">
+      <div class="empty-state" style="padding:60px 24px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="36" height="36"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <p>Click an IP from the list to see details</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
+

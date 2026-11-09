@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% set active = 'dashboard' %}
+
+{% block page_title %}Dashboard{% endblock %}
+{% block title %}Dashboard{% endblock %}
+{% block breadcrumb %}Dashboard{% endblock %}
+
+{% block topbar_actions %}
+<button class="btn btn-ghost btn-sm" id="uploadTrigger">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+  Upload Logs
+</button>
+<button class="btn btn-primary btn-sm" onclick="document.getElementById('fileInput').click()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+  Analyze File
+</button>
+<input type="file" id="fileInput" style="display:none" accept=".csv,.json,.log,.syslog,.txt">
+{% endblock %}
+
+{% block content %}
+
+<!-- Upload drop zone -->
+<div id="dropzone" style="display:none; position:fixed; inset:0; background:rgba(13,14,26,.9); z-index:500; align-items:center; justify-content:center; flex-direction:column; gap:16px;">
+  <div style="width:80px;height:80px;border-radius:50%;background:rgba(124,77,255,.15);display:flex;align-items:center;justify-content:center;">
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+  </div>
+  <div style="font-size:18px;font-weight:600;color:var(--txt1)">Drop log file to analyze</div>
+  <div style="font-size:13px;color:var(--txt2)">CSV · JSON · LOG · SYSLOG · TXT</div>
+</div>
+
+<!-- Progress overlay -->
+<div id="progressOverlay" style="display:none;position:fixed;inset:0;background:rgba(13,14,26,.85);z-index:600;align-items:center;justify-content:center;flex-direction:column;gap:20px;">
+  <div style="width:60px;height:60px;border-radius:50%;border:3px solid var(--border2);border-top-color:var(--purple);animation:spin .8s linear infinite;"></div>
+  <div style="font-size:15px;font-weight:600;color:var(--txt1)" id="progressMsg">Analyzing...</div>
+</div>
+
+<!-- ── KPI Row ────────────────────────────────────────────────────────────────── -->
+<div class="kpi-grid mb-20" id="kpiRow">
+  <div class="kpi-card c1">
+    <div class="kpi-glow"></div>
+    <div class="kpi-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    </div>
+    <div class="kpi-label">Total Logs Analyzed</div>
+    <div class="kpi-value" id="kpiTotal">—</div>
+    <span class="kpi-delta up" id="kpiTotalDelta" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"/></svg>
+      <span></span>
+    </span>
+  </div>
+  <div class="kpi-card c2">
+    <div class="kpi-glow"></div>
+    <div class="kpi-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    </div>
+    <div class="kpi-label">Suspicious Entries</div>
+    <div class="kpi-value" id="kpiSusp">—</div>
+    <span class="kpi-delta down" id="kpiSuspDelta" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="6 9 12 15 18 9"/></svg>
+      <span></span>
+    </span>
+  </div>
+  <div class="kpi-card c3">
+    <div class="kpi-glow"></div>
+    <div class="kpi-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    </div>
+    <div class="kpi-label">Model Accuracy</div>
+    <div class="kpi-value" id="kpiAcc">—</div>
+  </div>
+  <div class="kpi-card c4">
+    <div class="kpi-glow"></div>
+    <div class="kpi-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+    </div>
+    <div class="kpi-label">Cases Resolved</div>
+    <div class="kpi-value" id="kpiResolved">—</div>
+  </div>
+</div>
+
+<!-- ── Row 2: Donut + Line ────────────────────────────────────────────────────── -->
+<div class="grid-2-3 mb-20">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Alerts by Severity
+      </div>
+    </div>
+    <div style="position:relative;height:200px;display:flex;align-items:center;justify-content:center;">
+      <canvas id="donutChart"></canvas>
+      <div id="donutCenter" style="position:absolute;text-align:center;pointer-events:none;">
+        <div style="font-size:26px;font-weight:700;color:var(--txt1);letter-spacing:-1px" id="donutTotal">0</div>
+        <div style="font-size:11px;color:var(--txt3)">Total</div>
+      </div>
+    </div>
+    <div id="donutLegend" style="display:flex;flex-direction:column;gap:8px;margin-top:14px;"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Scan Trend — Last 7 Days
+      </div>
+      <span style="font-size:10px;color:var(--txt3)">Suspicious vs Critical</span>
+    </div>
+    <div style="height:220px;">
+      <canvas id="trendChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- ── Row 3: Table + Metrics ─────────────────────────────────────────────────── -->
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+        Riskiest Entries
+      </div>
+      <a href="/alerts" class="btn btn-ghost btn-sm">View All</a>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Asset / IP</th>
+            <th>Source</th>
+            <th>Risk</th>
+            <th>Alerts</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="riskTable">
+          <tr><td colspan="5"><div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p>No scans yet — upload a log file</p></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Model Performance
+      </div>
+    </div>
+
+    <div id="perfMetrics" style="display:flex;flex-direction:column;gap:14px;">
+      <div class="empty-state" style="padding:24px 0;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <p>Run a scan to see metrics</p>
+      </div>
+    </div>
+
+    <div class="card-header" style="margin-top:18px;margin-bottom:12px;">
+      <div class="card-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+        Severity Breakdown
+      </div>
+    </div>
+    <div style="height:160px;">
+      <canvas id="severityChart"></canvas>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

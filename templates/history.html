@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% set active = 'history' %}
+
+{% block page_title %}Analysis History{% endblock %}
+{% block title %}Analysis History{% endblock %}
+{% block breadcrumb %}History{% endblock %}
+
+{% block topbar_actions %}
+<button class="btn btn-ghost btn-sm" id="compareBtn" disabled onclick="openCompare()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+  Compare
+</button>
+<button class="btn btn-primary btn-sm" onclick="window.location='/'">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+  New Scan
+</button>
+{% endblock %}
+
+{% block content %}
+
+<div class="modal-overlay" id="compareModal">
+  <div class="modal" style="width:600px">
+    <div class="modal-header">
+      <div class="modal-title">Scan Comparison</div>
+      <button class="modal-close" onclick="document.getElementById('compareModal').classList.remove('open')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div id="compareContent" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;"></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="12 8 12 12 14 14"/><path d="M3.05 11a9 9 0 1 0 .5-4"/><polyline points="3 3 3 7 7 7"/></svg>
+      All Scans
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <input class="input-sm" style="width:200px" placeholder="Search filename…" id="searchInput" oninput="filterTable()">
+      <span id="selCount" style="font-size:11px;color:var(--txt3);white-space:nowrap"></span>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:28px"><input type="checkbox" id="selectAll" onchange="toggleAll(this)"></th>
+          <th>#</th>
+          <th>Filename</th>
+          <th>Date</th>
+          <th>Total Logs</th>
+          <th>Suspicious</th>
+          <th>Risk Score</th>
+          <th>Priority</th>
+          <th>Case Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="historyBody">
+        <tr><td colspan="10">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="12 8 12 12 14 14"/><path d="M3.05 11a9 9 0 1 0 .5-4"/><polyline points="3 3 3 7 7 7"/></svg>
+            <p>No scans yet</p>
+          </div>
+        </td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<template id="expandTpl">
+  <tr class="expand-row">
+    <td colspan="10" style="padding:0;background:var(--card2)">
+      <div style="padding:16px 24px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--txt3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px">Case Timeline</div>
+          <div class="expand-timeline"></div>
+          <div style="margin-top:12px;display:flex;gap:8px;align-items:center;">
+            <select class="select-sm expand-status-sel">
+              <option>Open</option><option>In Progress</option><option>Resolved</option><option>Closed</option>
+            </select>
+            <input class="input-sm expand-note-input" style="flex:1" placeholder="Note…">
+            <button class="btn btn-primary btn-sm expand-save-btn">Save</button>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--txt3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px">Assignment</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <input class="input-sm expand-assignee" placeholder="Assigned to…">
+            <select class="select-sm expand-priority-sel">
+              <option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option>
+            </select>
+            <button class="btn btn-ghost btn-sm expand-assign-btn" style="align-self:flex-start">Assign</button>
+          </div>
+          <div style="margin-top:16px;">
+            <div style="font-size:11px;font-weight:600;color:var(--txt3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">Export</div>
+            <div style="display:flex;gap:8px;">
+              <a class="btn btn-ghost btn-sm expand-pdf" href="#" target="_blank">PDF Report</a>
+              <a class="btn btn-ghost btn-sm expand-excel" href="#" target="_blank">Excel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+</template>
+
+{% endblock %}
+

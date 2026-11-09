@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% set active = 'alerts' %}
+
+{% block page_title %}Alerts Center{% endblock %}
+{% block title %}Alerts Center{% endblock %}
+{% block breadcrumb %}Alerts{% endblock %}
+
+{% block topbar_actions %}
+<select class="select-sm" id="scanSel" onchange="loadAlerts()">
+  <option value="">Loading scans…</option>
+</select>
+{% endblock %}
+
+{% block content %}
+
+<!-- Mini KPI row -->
+<div class="kpi-grid mb-20">
+  <div class="kpi-card c1">
+    <div class="kpi-glow"></div>
+    <div class="kpi-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+    </div>
+    <div class="kpi-label">Critical</div>
+    <div class="kpi-value" id="kpiCrit">0</div>
+  </div>
+  <div class="kpi-card c2">
+    <div class="kpi-glow"></div>
+    <div class="kpi-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <div class="kpi-label">High</div>
+    <div class="kpi-value" id="kpiHigh">0</div>
+  </div>
+  <div class="kpi-card c3">
+    <div class="kpi-glow"></div>
+    <div class="kpi-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <div class="kpi-label">Medium</div>
+    <div class="kpi-value" id="kpiMed">0</div>
+  </div>
+  <div class="kpi-card c4">
+    <div class="kpi-glow"></div>
+    <div class="kpi-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    </div>
+    <div class="kpi-label">Low</div>
+    <div class="kpi-value" id="kpiLow">0</div>
+  </div>
+</div>
+
+<!-- Alerts table -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      Security Alerts
+    </div>
+    <!-- Filter bar -->
+    <div style="display:flex;gap:6px;align-items:center;">
+      <input class="input-sm" style="width:180px" id="alertSearch" placeholder="Search IP / threat…" oninput="applyFilter()">
+      <div style="display:flex;gap:4px;" id="sevFilters">
+        <button class="btn btn-ghost btn-sm active-filter" data-sev="all" onclick="setSev('all',this)">All</button>
+        <button class="btn btn-ghost btn-sm" data-sev="Critical"  onclick="setSev('Critical',this)" style="color:#ff6b8a">Critical</button>
+        <button class="btn btn-ghost btn-sm" data-sev="High"      onclick="setSev('High',this)"     style="color:#ffab00">High</button>
+        <button class="btn btn-ghost btn-sm" data-sev="Medium"    onclick="setSev('Medium',this)"   style="color:#00e5ff">Medium</button>
+        <button class="btn btn-ghost btn-sm" data-sev="Low"       onclick="setSev('Low',this)"      style="color:#00e676">Low</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Severity</th>
+          <th>IP Address</th>
+          <th>Threat / MITRE ID</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Scan Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="alertsBody">
+        <tr><td colspan="7">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>
+            <p>Select a scan to view alerts</p>
+          </div>
+        </td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+

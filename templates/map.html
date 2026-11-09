@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% set active = 'map' %}
+
+{% block page_title %}Geographic Attack Map{% endblock %}
+{% block title %}Geographic Attack Map{% endblock %}
+{% block breadcrumb %}Geo Map{% endblock %}
+
+{% block topbar_actions %}
+<select class="select-sm" id="scanSel" onchange="loadMap()">
+  <option value="">Select scan…</option>
+</select>
+{% endblock %}
+
+{% block content %}
+
+<!-- Map -->
+<div class="card mb-20" style="padding:0;overflow:hidden;">
+  <div id="mapContainer"></div>
+</div>
+
+<!-- Threat Intel table -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      IP Geo Intelligence
+    </div>
+    <span id="ipCount" style="font-size:11px;color:var(--txt3)"></span>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>IP Address</th>
+          <th>Country</th>
+          <th>City</th>
+          <th>Abuse Score</th>
+          <th>Reports</th>
+          <th>Risk Level</th>
+          <th>MITRE Techniques</th>
+        </tr>
+      </thead>
+      <tbody id="geoBody">
+        <tr><td colspan="7">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/></svg>
+            <p>Select a scan to see geo data</p>
+          </div>
+        </td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+

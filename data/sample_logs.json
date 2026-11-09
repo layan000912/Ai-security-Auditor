@@ -1,0 +1,2602 @@
+[
+  {
+    "timestamp": "2024-03-05T07:04:00Z",
+    "source_ip": "192.168.1.1",
+    "username": "alice",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 5,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2752
+    }
+  },
+  {
+    "timestamp": "2024-03-06T00:33:00Z",
+    "source_ip": "192.168.1.17",
+    "username": "alice",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 11,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 821
+    }
+  },
+  {
+    "timestamp": "2024-03-03T06:35:00Z",
+    "source_ip": "192.168.1.15",
+    "username": "admin",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 2,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4994
+    }
+  },
+  {
+    "timestamp": "2024-03-04T13:43:00Z",
+    "source_ip": "192.168.1.6",
+    "username": "alice",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 11,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3711
+    }
+  },
+  {
+    "timestamp": "2024-03-04T15:09:00Z",
+    "source_ip": "192.168.1.5",
+    "username": "charlie",
+    "service": "HTTP",
+    "status": "failed",
+    "attempts": 15,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1184
+    }
+  },
+  {
+    "timestamp": "2024-03-05T17:44:00Z",
+    "source_ip": "192.168.1.7",
+    "username": "test",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 1,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 424
+    }
+  },
+  {
+    "timestamp": "2024-03-06T00:33:00Z",
+    "source_ip": "192.168.1.13",
+    "username": "guest",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 1,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1919
+    }
+  },
+  {
+    "timestamp": "2024-03-04T18:51:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "charlie",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 6,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1261
+    }
+  },
+  {
+    "timestamp": "2024-03-02T21:25:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "alice",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 11,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4843
+    }
+  },
+  {
+    "timestamp": "2024-03-02T21:05:00Z",
+    "source_ip": "192.168.1.19",
+    "username": "guest",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 4,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4829
+    }
+  },
+  {
+    "timestamp": "2024-03-02T17:19:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "guest",
+    "service": "RDP",
+    "status": "failed",
+    "attempts": 11,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1077
+    }
+  },
+  {
+    "timestamp": "2024-03-04T12:18:00Z",
+    "source_ip": "192.168.1.19",
+    "username": "bob",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 8,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2648
+    }
+  },
+  {
+    "timestamp": "2024-03-05T14:37:00Z",
+    "source_ip": "192.168.1.3",
+    "username": "bob",
+    "service": "RDP",
+    "status": "denied",
+    "attempts": 12,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3590
+    }
+  },
+  {
+    "timestamp": "2024-03-06T00:28:00Z",
+    "source_ip": "192.168.1.6",
+    "username": "alice",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 15,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3963
+    }
+  },
+  {
+    "timestamp": "2024-03-04T09:27:00Z",
+    "source_ip": "192.168.1.9",
+    "username": "bob",
+    "service": "SSH",
+    "status": "denied",
+    "attempts": 11,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2353
+    }
+  },
+  {
+    "timestamp": "2024-03-03T09:25:00Z",
+    "source_ip": "192.168.1.14",
+    "username": "guest",
+    "service": "HTTP",
+    "status": "failed",
+    "attempts": 6,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4458
+    }
+  },
+  {
+    "timestamp": "2024-03-06T02:00:00Z",
+    "source_ip": "192.168.1.13",
+    "username": "guest",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 12,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3093
+    }
+  },
+  {
+    "timestamp": "2024-03-05T13:03:00Z",
+    "source_ip": "192.168.1.7",
+    "username": "guest",
+    "service": "HTTPS",
+    "status": "success",
+    "attempts": 2,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4090
+    }
+  },
+  {
+    "timestamp": "2024-03-01T14:07:00Z",
+    "source_ip": "192.168.1.19",
+    "username": "admin",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 3,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2435
+    }
+  },
+  {
+    "timestamp": "2024-03-02T17:32:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "admin",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 1,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 592
+    }
+  },
+  {
+    "timestamp": "2024-03-01T16:33:00Z",
+    "source_ip": "192.168.1.17",
+    "username": "guest",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 5,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2391
+    }
+  },
+  {
+    "timestamp": "2024-03-04T17:33:00Z",
+    "source_ip": "192.168.1.19",
+    "username": "root",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 10,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1134
+    }
+  },
+  {
+    "timestamp": "2024-03-02T16:27:00Z",
+    "source_ip": "192.168.1.15",
+    "username": "charlie",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 9,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3064
+    }
+  },
+  {
+    "timestamp": "2024-03-04T21:33:00Z",
+    "source_ip": "192.168.1.6",
+    "username": "charlie",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 3,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1555
+    }
+  },
+  {
+    "timestamp": "2024-03-01T13:45:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "admin",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 8,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 573
+    }
+  },
+  {
+    "timestamp": "2024-03-02T15:07:00Z",
+    "source_ip": "192.168.1.19",
+    "username": "root",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 10,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 903
+    }
+  },
+  {
+    "timestamp": "2024-03-04T06:31:00Z",
+    "source_ip": "192.168.1.6",
+    "username": "charlie",
+    "service": "SSH",
+    "status": "failed",
+    "attempts": 6,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 679
+    }
+  },
+  {
+    "timestamp": "2024-03-02T14:25:00Z",
+    "source_ip": "192.168.1.13",
+    "username": "bob",
+    "service": "FTP",
+    "status": "failed",
+    "attempts": 9,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1834
+    }
+  },
+  {
+    "timestamp": "2024-03-01T14:12:00Z",
+    "source_ip": "192.168.1.14",
+    "username": "test",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 5,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 871
+    }
+  },
+  {
+    "timestamp": "2024-03-03T18:56:00Z",
+    "source_ip": "192.168.1.15",
+    "username": "charlie",
+    "service": "SSH",
+    "status": "failed",
+    "attempts": 3,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2083
+    }
+  },
+  {
+    "timestamp": "2024-03-04T11:35:00Z",
+    "source_ip": "192.168.1.5",
+    "username": "root",
+    "service": "FTP",
+    "status": "failed",
+    "attempts": 3,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 811
+    }
+  },
+  {
+    "timestamp": "2024-03-05T01:03:00Z",
+    "source_ip": "192.168.1.2",
+    "username": "guest",
+    "service": "HTTPS",
+    "status": "success",
+    "attempts": 11,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 897
+    }
+  },
+  {
+    "timestamp": "2024-03-04T19:08:00Z",
+    "source_ip": "192.168.1.18",
+    "username": "alice",
+    "service": "SSH",
+    "status": "failed",
+    "attempts": 1,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4361
+    }
+  },
+  {
+    "timestamp": "2024-03-01T19:01:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "charlie",
+    "service": "HTTP",
+    "status": "failed",
+    "attempts": 10,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4133
+    }
+  },
+  {
+    "timestamp": "2024-03-05T21:39:00Z",
+    "source_ip": "192.168.1.17",
+    "username": "test",
+    "service": "RDP",
+    "status": "failed",
+    "attempts": 4,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2516
+    }
+  },
+  {
+    "timestamp": "2024-03-06T06:54:00Z",
+    "source_ip": "192.168.1.5",
+    "username": "admin",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 1,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 992
+    }
+  },
+  {
+    "timestamp": "2024-03-02T20:22:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "guest",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 15,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1479
+    }
+  },
+  {
+    "timestamp": "2024-03-04T17:42:00Z",
+    "source_ip": "192.168.1.4",
+    "username": "guest",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 6,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 900
+    }
+  },
+  {
+    "timestamp": "2024-03-04T02:24:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "guest",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 1,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1238
+    }
+  },
+  {
+    "timestamp": "2024-03-04T09:23:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "admin",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 8,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3979
+    }
+  },
+  {
+    "timestamp": "2024-03-05T23:52:00Z",
+    "source_ip": "192.168.1.5",
+    "username": "bob",
+    "service": "SSH",
+    "status": "denied",
+    "attempts": 7,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3752
+    }
+  },
+  {
+    "timestamp": "2024-03-05T06:01:00Z",
+    "source_ip": "192.168.1.19",
+    "username": "alice",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 13,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1420
+    }
+  },
+  {
+    "timestamp": "2024-03-05T07:31:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "bob",
+    "service": "HTTPS",
+    "status": "failed",
+    "attempts": 8,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 512
+    }
+  },
+  {
+    "timestamp": "2024-03-02T06:32:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "charlie",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 1,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 347
+    }
+  },
+  {
+    "timestamp": "2024-03-06T06:40:00Z",
+    "source_ip": "192.168.1.16",
+    "username": "test",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 13,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1826
+    }
+  },
+  {
+    "timestamp": "2024-03-04T09:57:00Z",
+    "source_ip": "192.168.1.13",
+    "username": "guest",
+    "service": "RDP",
+    "status": "failed",
+    "attempts": 5,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1360
+    }
+  },
+  {
+    "timestamp": "2024-03-02T17:25:00Z",
+    "source_ip": "10.0.0.1",
+    "username": "guest",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 2,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3390
+    }
+  },
+  {
+    "timestamp": "2024-03-03T12:15:00Z",
+    "source_ip": "192.168.1.16",
+    "username": "charlie",
+    "service": "SSH",
+    "status": "failed",
+    "attempts": 5,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4799
+    }
+  },
+  {
+    "timestamp": "2024-03-04T12:23:00Z",
+    "source_ip": "192.168.1.1",
+    "username": "guest",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 9,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4824
+    }
+  },
+  {
+    "timestamp": "2024-03-03T10:48:00Z",
+    "source_ip": "172.16.0.5",
+    "username": "test",
+    "service": "HTTP",
+    "status": "failed",
+    "attempts": 7,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 848
+    }
+  },
+  {
+    "timestamp": "2024-03-02T12:11:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "bob",
+    "service": "SSH",
+    "status": "failed",
+    "attempts": 1,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2887
+    }
+  },
+  {
+    "timestamp": "2024-03-04T11:24:00Z",
+    "source_ip": "192.168.1.1",
+    "username": "guest",
+    "service": "SSH",
+    "status": "failed",
+    "attempts": 13,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 601
+    }
+  },
+  {
+    "timestamp": "2024-03-03T14:27:00Z",
+    "source_ip": "192.168.1.13",
+    "username": "bob",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 15,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 576
+    }
+  },
+  {
+    "timestamp": "2024-03-05T01:02:00Z",
+    "source_ip": "192.168.1.16",
+    "username": "alice",
+    "service": "HTTPS",
+    "status": "success",
+    "attempts": 8,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2510
+    }
+  },
+  {
+    "timestamp": "2024-03-01T16:36:00Z",
+    "source_ip": "192.168.1.14",
+    "username": "admin",
+    "service": "FTP",
+    "status": "failed",
+    "attempts": 10,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3929
+    }
+  },
+  {
+    "timestamp": "2024-03-03T14:42:00Z",
+    "source_ip": "192.168.1.9",
+    "username": "test",
+    "service": "HTTPS",
+    "status": "success",
+    "attempts": 7,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1617
+    }
+  },
+  {
+    "timestamp": "2024-03-02T23:30:00Z",
+    "source_ip": "192.168.1.2",
+    "username": "bob",
+    "service": "RDP",
+    "status": "denied",
+    "attempts": 3,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1877
+    }
+  },
+  {
+    "timestamp": "2024-03-03T18:49:00Z",
+    "source_ip": "192.168.1.16",
+    "username": "bob",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 15,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4280
+    }
+  },
+  {
+    "timestamp": "2024-03-04T11:15:00Z",
+    "source_ip": "192.168.1.12",
+    "username": "admin",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 12,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 477
+    }
+  },
+  {
+    "timestamp": "2024-03-02T03:16:00Z",
+    "source_ip": "192.168.1.17",
+    "username": "guest",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 10,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1620
+    }
+  },
+  {
+    "timestamp": "2024-03-04T16:09:00Z",
+    "source_ip": "192.168.1.15",
+    "username": "alice",
+    "service": "HTTP",
+    "status": "denied",
+    "attempts": 6,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2314
+    }
+  },
+  {
+    "timestamp": "2024-03-05T14:52:00Z",
+    "source_ip": "192.168.1.7",
+    "username": "root",
+    "service": "HTTPS",
+    "status": "success",
+    "attempts": 7,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2028
+    }
+  },
+  {
+    "timestamp": "2024-03-04T17:48:00Z",
+    "source_ip": "192.168.1.12",
+    "username": "alice",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 10,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2818
+    }
+  },
+  {
+    "timestamp": "2024-03-05T19:53:00Z",
+    "source_ip": "192.168.1.13",
+    "username": "bob",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 9,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2651
+    }
+  },
+  {
+    "timestamp": "2024-03-04T22:00:00Z",
+    "source_ip": "192.168.1.1",
+    "username": "test",
+    "service": "RDP",
+    "status": "failed",
+    "attempts": 12,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1891
+    }
+  },
+  {
+    "timestamp": "2024-03-06T01:38:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "alice",
+    "service": "SSH",
+    "status": "denied",
+    "attempts": 10,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4314
+    }
+  },
+  {
+    "timestamp": "2024-03-04T10:11:00Z",
+    "source_ip": "192.168.1.13",
+    "username": "charlie",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 1,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 294
+    }
+  },
+  {
+    "timestamp": "2024-03-02T23:48:00Z",
+    "source_ip": "172.16.0.5",
+    "username": "guest",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 3,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3598
+    }
+  },
+  {
+    "timestamp": "2024-03-05T04:31:00Z",
+    "source_ip": "192.168.1.3",
+    "username": "root",
+    "service": "HTTPS",
+    "status": "success",
+    "attempts": 9,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1393
+    }
+  },
+  {
+    "timestamp": "2024-03-04T08:49:00Z",
+    "source_ip": "192.168.1.19",
+    "username": "alice",
+    "service": "RDP",
+    "status": "denied",
+    "attempts": 15,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4383
+    }
+  },
+  {
+    "timestamp": "2024-03-03T17:10:00Z",
+    "source_ip": "192.168.1.7",
+    "username": "admin",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 5,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1865
+    }
+  },
+  {
+    "timestamp": "2024-03-03T20:34:00Z",
+    "source_ip": "10.0.0.1",
+    "username": "admin",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 15,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4459
+    }
+  },
+  {
+    "timestamp": "2024-03-03T07:12:00Z",
+    "source_ip": "192.168.1.3",
+    "username": "alice",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 4,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3814
+    }
+  },
+  {
+    "timestamp": "2024-03-03T07:52:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "admin",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 14,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3547
+    }
+  },
+  {
+    "timestamp": "2024-03-01T13:43:00Z",
+    "source_ip": "192.168.1.16",
+    "username": "test",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 3,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2904
+    }
+  },
+  {
+    "timestamp": "2024-03-01T12:46:00Z",
+    "source_ip": "192.168.1.12",
+    "username": "test",
+    "service": "SSH",
+    "status": "denied",
+    "attempts": 10,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4351
+    }
+  },
+  {
+    "timestamp": "2024-03-02T12:04:00Z",
+    "source_ip": "192.168.1.5",
+    "username": "guest",
+    "service": "HTTPS",
+    "status": "failed",
+    "attempts": 4,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4859
+    }
+  },
+  {
+    "timestamp": "2024-03-01T19:23:00Z",
+    "source_ip": "192.168.1.18",
+    "username": "root",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 14,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1959
+    }
+  },
+  {
+    "timestamp": "2024-03-05T01:59:00Z",
+    "source_ip": "192.168.1.3",
+    "username": "test",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 13,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3452
+    }
+  },
+  {
+    "timestamp": "2024-03-03T21:54:00Z",
+    "source_ip": "192.168.1.1",
+    "username": "bob",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 13,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1009
+    }
+  },
+  {
+    "timestamp": "2024-03-04T09:54:00Z",
+    "source_ip": "192.168.1.12",
+    "username": "charlie",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 7,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 947
+    }
+  },
+  {
+    "timestamp": "2024-03-03T14:43:00Z",
+    "source_ip": "192.168.1.13",
+    "username": "test",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 4,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 216
+    }
+  },
+  {
+    "timestamp": "2024-03-04T21:30:00Z",
+    "source_ip": "192.168.1.15",
+    "username": "test",
+    "service": "FTP",
+    "status": "failed",
+    "attempts": 14,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2186
+    }
+  },
+  {
+    "timestamp": "2024-03-01T11:25:00Z",
+    "source_ip": "192.168.1.19",
+    "username": "charlie",
+    "service": "RDP",
+    "status": "failed",
+    "attempts": 13,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3019
+    }
+  },
+  {
+    "timestamp": "2024-03-02T05:23:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "bob",
+    "service": "RDP",
+    "status": "denied",
+    "attempts": 6,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4105
+    }
+  },
+  {
+    "timestamp": "2024-03-03T20:10:00Z",
+    "source_ip": "192.168.1.1",
+    "username": "root",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 3,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2530
+    }
+  },
+  {
+    "timestamp": "2024-03-02T11:13:00Z",
+    "source_ip": "192.168.1.1",
+    "username": "charlie",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 5,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4891
+    }
+  },
+  {
+    "timestamp": "2024-03-04T13:02:00Z",
+    "source_ip": "192.168.1.1",
+    "username": "bob",
+    "service": "SSH",
+    "status": "denied",
+    "attempts": 5,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 806
+    }
+  },
+  {
+    "timestamp": "2024-03-02T01:34:00Z",
+    "source_ip": "192.168.1.18",
+    "username": "guest",
+    "service": "FTP",
+    "status": "failed",
+    "attempts": 13,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1126
+    }
+  },
+  {
+    "timestamp": "2024-03-04T03:09:00Z",
+    "source_ip": "192.168.1.2",
+    "username": "charlie",
+    "service": "FTP",
+    "status": "failed",
+    "attempts": 3,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 384
+    }
+  },
+  {
+    "timestamp": "2024-03-05T05:14:00Z",
+    "source_ip": "192.168.1.6",
+    "username": "bob",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 10,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 683
+    }
+  },
+  {
+    "timestamp": "2024-03-02T12:06:00Z",
+    "source_ip": "192.168.1.2",
+    "username": "admin",
+    "service": "HTTPS",
+    "status": "success",
+    "attempts": 10,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1926
+    }
+  },
+  {
+    "timestamp": "2024-03-02T20:55:00Z",
+    "source_ip": "192.168.1.16",
+    "username": "admin",
+    "service": "SSH",
+    "status": "denied",
+    "attempts": 3,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 110
+    }
+  },
+  {
+    "timestamp": "2024-03-04T08:10:00Z",
+    "source_ip": "192.168.1.2",
+    "username": "guest",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 14,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1085
+    }
+  },
+  {
+    "timestamp": "2024-03-03T03:08:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "charlie",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 14,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1796
+    }
+  },
+  {
+    "timestamp": "2024-03-03T21:07:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "guest",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 12,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2966
+    }
+  },
+  {
+    "timestamp": "2024-03-01T12:45:00Z",
+    "source_ip": "192.168.1.15",
+    "username": "alice",
+    "service": "HTTPS",
+    "status": "success",
+    "attempts": 7,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 564
+    }
+  },
+  {
+    "timestamp": "2024-03-05T14:28:00Z",
+    "source_ip": "192.168.1.1",
+    "username": "bob",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 2,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2435
+    }
+  },
+  {
+    "timestamp": "2024-03-02T18:27:00Z",
+    "source_ip": "192.168.1.1",
+    "username": "root",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 4,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1682
+    }
+  },
+  {
+    "timestamp": "2024-03-05T05:22:00Z",
+    "source_ip": "192.168.1.3",
+    "username": "guest",
+    "service": "SSH",
+    "status": "failed",
+    "attempts": 11,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3665
+    }
+  },
+  {
+    "timestamp": "2024-03-03T04:38:00Z",
+    "source_ip": "192.168.1.14",
+    "username": "alice",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 11,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2911
+    }
+  },
+  {
+    "timestamp": "2024-03-05T20:06:00Z",
+    "source_ip": "192.168.1.14",
+    "username": "guest",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 9,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3275
+    }
+  },
+  {
+    "timestamp": "2024-03-04T09:35:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "alice",
+    "service": "RDP",
+    "status": "denied",
+    "attempts": 6,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3870
+    }
+  },
+  {
+    "timestamp": "2024-03-04T23:23:00Z",
+    "source_ip": "192.168.1.3",
+    "username": "admin",
+    "service": "HTTP",
+    "status": "failed",
+    "attempts": 10,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4322
+    }
+  },
+  {
+    "timestamp": "2024-03-04T21:21:00Z",
+    "source_ip": "192.168.1.9",
+    "username": "admin",
+    "service": "RDP",
+    "status": "failed",
+    "attempts": 13,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2353
+    }
+  },
+  {
+    "timestamp": "2024-03-05T09:48:00Z",
+    "source_ip": "192.168.1.3",
+    "username": "alice",
+    "service": "RDP",
+    "status": "failed",
+    "attempts": 11,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1098
+    }
+  },
+  {
+    "timestamp": "2024-03-01T15:32:00Z",
+    "source_ip": "192.168.1.15",
+    "username": "admin",
+    "service": "HTTPS",
+    "status": "success",
+    "attempts": 7,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4993
+    }
+  },
+  {
+    "timestamp": "2024-03-03T09:31:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "root",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 9,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4843
+    }
+  },
+  {
+    "timestamp": "2024-03-04T18:21:00Z",
+    "source_ip": "192.168.1.2",
+    "username": "charlie",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 7,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1203
+    }
+  },
+  {
+    "timestamp": "2024-03-03T01:11:00Z",
+    "source_ip": "192.168.1.4",
+    "username": "admin",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 4,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2524
+    }
+  },
+  {
+    "timestamp": "2024-03-01T20:12:00Z",
+    "source_ip": "192.168.1.14",
+    "username": "root",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 15,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4833
+    }
+  },
+  {
+    "timestamp": "2024-03-03T14:51:00Z",
+    "source_ip": "192.168.1.5",
+    "username": "charlie",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 7,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3956
+    }
+  },
+  {
+    "timestamp": "2024-03-04T02:09:00Z",
+    "source_ip": "172.16.0.5",
+    "username": "root",
+    "service": "FTP",
+    "status": "failed",
+    "attempts": 6,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4938
+    }
+  },
+  {
+    "timestamp": "2024-03-03T01:07:00Z",
+    "source_ip": "192.168.1.13",
+    "username": "guest",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 13,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1226
+    }
+  },
+  {
+    "timestamp": "2024-03-06T01:52:00Z",
+    "source_ip": "192.168.1.12",
+    "username": "root",
+    "service": "HTTP",
+    "status": "failed",
+    "attempts": 3,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1497
+    }
+  },
+  {
+    "timestamp": "2024-03-04T12:25:00Z",
+    "source_ip": "172.16.0.5",
+    "username": "alice",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 2,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 992
+    }
+  },
+  {
+    "timestamp": "2024-03-04T05:40:00Z",
+    "source_ip": "192.168.1.2",
+    "username": "bob",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 7,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 644
+    }
+  },
+  {
+    "timestamp": "2024-03-05T09:57:00Z",
+    "source_ip": "192.168.1.12",
+    "username": "charlie",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 11,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1074
+    }
+  },
+  {
+    "timestamp": "2024-03-02T12:54:00Z",
+    "source_ip": "192.168.1.1",
+    "username": "bob",
+    "service": "HTTPS",
+    "status": "success",
+    "attempts": 1,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3172
+    }
+  },
+  {
+    "timestamp": "2024-03-04T13:47:00Z",
+    "source_ip": "192.168.1.6",
+    "username": "alice",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 7,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 116
+    }
+  },
+  {
+    "timestamp": "2024-03-03T11:45:00Z",
+    "source_ip": "192.168.1.18",
+    "username": "guest",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 10,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3701
+    }
+  },
+  {
+    "timestamp": "2024-03-02T08:04:00Z",
+    "source_ip": "192.168.1.19",
+    "username": "charlie",
+    "service": "HTTPS",
+    "status": "success",
+    "attempts": 3,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3315
+    }
+  },
+  {
+    "timestamp": "2024-03-01T08:31:00Z",
+    "source_ip": "192.168.1.1",
+    "username": "guest",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 14,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4255
+    }
+  },
+  {
+    "timestamp": "2024-03-01T17:51:00Z",
+    "source_ip": "192.168.1.15",
+    "username": "alice",
+    "service": "HTTPS",
+    "status": "failed",
+    "attempts": 10,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1643
+    }
+  },
+  {
+    "timestamp": "2024-03-02T16:00:00Z",
+    "source_ip": "10.0.0.1",
+    "username": "alice",
+    "service": "HTTPS",
+    "status": "failed",
+    "attempts": 4,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1373
+    }
+  },
+  {
+    "timestamp": "2024-03-03T13:56:00Z",
+    "source_ip": "192.168.1.6",
+    "username": "test",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 7,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2416
+    }
+  },
+  {
+    "timestamp": "2024-03-03T22:11:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "alice",
+    "service": "RDP",
+    "status": "denied",
+    "attempts": 9,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4729
+    }
+  },
+  {
+    "timestamp": "2024-03-03T06:58:00Z",
+    "source_ip": "192.168.1.7",
+    "username": "admin",
+    "service": "RDP",
+    "status": "denied",
+    "attempts": 5,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2749
+    }
+  },
+  {
+    "timestamp": "2024-03-03T16:58:00Z",
+    "source_ip": "192.168.1.17",
+    "username": "bob",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 12,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1012
+    }
+  },
+  {
+    "timestamp": "2024-03-04T18:15:00Z",
+    "source_ip": "192.168.1.2",
+    "username": "admin",
+    "service": "FTP",
+    "status": "failed",
+    "attempts": 6,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2781
+    }
+  },
+  {
+    "timestamp": "2024-03-02T05:15:00Z",
+    "source_ip": "192.168.1.15",
+    "username": "guest",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 14,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4859
+    }
+  },
+  {
+    "timestamp": "2024-03-02T17:53:00Z",
+    "source_ip": "192.168.1.7",
+    "username": "alice",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 13,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2789
+    }
+  },
+  {
+    "timestamp": "2024-03-02T10:40:00Z",
+    "source_ip": "192.168.1.5",
+    "username": "bob",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 14,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1262
+    }
+  },
+  {
+    "timestamp": "2024-03-05T10:31:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "charlie",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 4,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3975
+    }
+  },
+  {
+    "timestamp": "2024-03-03T00:39:00Z",
+    "source_ip": "192.168.1.5",
+    "username": "admin",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 5,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 960
+    }
+  },
+  {
+    "timestamp": "2024-03-01T09:37:00Z",
+    "source_ip": "172.16.0.5",
+    "username": "guest",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 8,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4814
+    }
+  },
+  {
+    "timestamp": "2024-03-01T14:42:00Z",
+    "source_ip": "192.168.1.15",
+    "username": "charlie",
+    "service": "RDP",
+    "status": "denied",
+    "attempts": 14,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3596
+    }
+  },
+  {
+    "timestamp": "2024-03-02T18:45:00Z",
+    "source_ip": "192.168.1.13",
+    "username": "alice",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 6,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2251
+    }
+  },
+  {
+    "timestamp": "2024-03-03T16:34:00Z",
+    "source_ip": "192.168.1.4",
+    "username": "root",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 5,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2906
+    }
+  },
+  {
+    "timestamp": "2024-03-04T17:53:00Z",
+    "source_ip": "192.168.1.19",
+    "username": "charlie",
+    "service": "RDP",
+    "status": "denied",
+    "attempts": 4,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3203
+    }
+  },
+  {
+    "timestamp": "2024-03-04T22:03:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "charlie",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 10,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3374
+    }
+  },
+  {
+    "timestamp": "2024-03-04T19:47:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "bob",
+    "service": "RDP",
+    "status": "denied",
+    "attempts": 10,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1963
+    }
+  },
+  {
+    "timestamp": "2024-03-02T09:30:00Z",
+    "source_ip": "192.168.1.17",
+    "username": "test",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 6,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4863
+    }
+  },
+  {
+    "timestamp": "2024-03-01T12:57:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "alice",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 6,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 348
+    }
+  },
+  {
+    "timestamp": "2024-03-04T11:25:00Z",
+    "source_ip": "192.168.1.6",
+    "username": "test",
+    "service": "FTP",
+    "status": "failed",
+    "attempts": 2,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4213
+    }
+  },
+  {
+    "timestamp": "2024-03-04T13:45:00Z",
+    "source_ip": "192.168.1.4",
+    "username": "charlie",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 13,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1945
+    }
+  },
+  {
+    "timestamp": "2024-03-06T03:55:00Z",
+    "source_ip": "192.168.1.17",
+    "username": "root",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 6,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3973
+    }
+  },
+  {
+    "timestamp": "2024-03-05T11:42:00Z",
+    "source_ip": "192.168.1.6",
+    "username": "test",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 8,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3511
+    }
+  },
+  {
+    "timestamp": "2024-03-01T15:43:00Z",
+    "source_ip": "192.168.1.15",
+    "username": "bob",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 5,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4782
+    }
+  },
+  {
+    "timestamp": "2024-03-03T03:31:00Z",
+    "source_ip": "192.168.1.12",
+    "username": "charlie",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 10,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1482
+    }
+  },
+  {
+    "timestamp": "2024-03-01T22:04:00Z",
+    "source_ip": "192.168.1.4",
+    "username": "admin",
+    "service": "HTTP",
+    "status": "failed",
+    "attempts": 9,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3356
+    }
+  },
+  {
+    "timestamp": "2024-03-06T01:34:00Z",
+    "source_ip": "192.168.1.14",
+    "username": "alice",
+    "service": "HTTP",
+    "status": "denied",
+    "attempts": 11,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1075
+    }
+  },
+  {
+    "timestamp": "2024-03-05T11:56:00Z",
+    "source_ip": "192.168.1.4",
+    "username": "admin",
+    "service": "RDP",
+    "status": "denied",
+    "attempts": 2,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 990
+    }
+  },
+  {
+    "timestamp": "2024-03-04T08:08:00Z",
+    "source_ip": "192.168.1.17",
+    "username": "test",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 9,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1495
+    }
+  },
+  {
+    "timestamp": "2024-03-03T21:46:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "test",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 2,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2715
+    }
+  },
+  {
+    "timestamp": "2024-03-03T05:31:00Z",
+    "source_ip": "192.168.1.3",
+    "username": "guest",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 1,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3547
+    }
+  },
+  {
+    "timestamp": "2024-03-03T15:34:00Z",
+    "source_ip": "192.168.1.5",
+    "username": "root",
+    "service": "RDP",
+    "status": "failed",
+    "attempts": 4,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4878
+    }
+  },
+  {
+    "timestamp": "2024-03-03T00:57:00Z",
+    "source_ip": "192.168.1.5",
+    "username": "root",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 11,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4373
+    }
+  },
+  {
+    "timestamp": "2024-03-02T10:26:00Z",
+    "source_ip": "192.168.1.16",
+    "username": "charlie",
+    "service": "RDP",
+    "status": "failed",
+    "attempts": 7,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4972
+    }
+  },
+  {
+    "timestamp": "2024-03-04T18:42:00Z",
+    "source_ip": "192.168.1.4",
+    "username": "test",
+    "service": "HTTPS",
+    "status": "success",
+    "attempts": 12,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 447
+    }
+  },
+  {
+    "timestamp": "2024-03-01T20:24:00Z",
+    "source_ip": "192.168.1.9",
+    "username": "alice",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 6,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 274
+    }
+  },
+  {
+    "timestamp": "2024-03-03T13:03:00Z",
+    "source_ip": "192.168.1.4",
+    "username": "charlie",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 9,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2909
+    }
+  },
+  {
+    "timestamp": "2024-03-01T22:53:00Z",
+    "source_ip": "192.168.1.4",
+    "username": "charlie",
+    "service": "HTTPS",
+    "status": "failed",
+    "attempts": 7,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2421
+    }
+  },
+  {
+    "timestamp": "2024-03-03T19:50:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "alice",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 11,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1457
+    }
+  },
+  {
+    "timestamp": "2024-03-03T06:29:00Z",
+    "source_ip": "192.168.1.4",
+    "username": "alice",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 10,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3393
+    }
+  },
+  {
+    "timestamp": "2024-03-02T12:53:00Z",
+    "source_ip": "192.168.1.13",
+    "username": "alice",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 14,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 366
+    }
+  },
+  {
+    "timestamp": "2024-03-02T22:04:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "root",
+    "service": "HTTPS",
+    "status": "failed",
+    "attempts": 9,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4177
+    }
+  },
+  {
+    "timestamp": "2024-03-06T00:59:00Z",
+    "source_ip": "192.168.1.15",
+    "username": "alice",
+    "service": "SSH",
+    "status": "failed",
+    "attempts": 12,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4973
+    }
+  },
+  {
+    "timestamp": "2024-03-03T09:35:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "charlie",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 15,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3230
+    }
+  },
+  {
+    "timestamp": "2024-03-04T02:34:00Z",
+    "source_ip": "192.168.1.18",
+    "username": "charlie",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 14,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3254
+    }
+  },
+  {
+    "timestamp": "2024-03-01T11:40:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "test",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 10,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3409
+    }
+  },
+  {
+    "timestamp": "2024-03-04T10:20:00Z",
+    "source_ip": "192.168.1.6",
+    "username": "admin",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 6,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4916
+    }
+  },
+  {
+    "timestamp": "2024-03-04T01:09:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "root",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 11,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2441
+    }
+  },
+  {
+    "timestamp": "2024-03-04T12:36:00Z",
+    "source_ip": "192.168.1.7",
+    "username": "root",
+    "service": "HTTP",
+    "status": "denied",
+    "attempts": 7,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4048
+    }
+  },
+  {
+    "timestamp": "2024-03-05T00:50:00Z",
+    "source_ip": "192.168.1.3",
+    "username": "guest",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 6,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1128
+    }
+  },
+  {
+    "timestamp": "2024-03-02T06:26:00Z",
+    "source_ip": "192.168.1.7",
+    "username": "guest",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 9,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4978
+    }
+  },
+  {
+    "timestamp": "2024-03-01T16:51:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "alice",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 12,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1614
+    }
+  },
+  {
+    "timestamp": "2024-03-02T07:34:00Z",
+    "source_ip": "192.168.1.14",
+    "username": "test",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 12,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4715
+    }
+  },
+  {
+    "timestamp": "2024-03-05T09:49:00Z",
+    "source_ip": "192.168.1.5",
+    "username": "bob",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 10,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 631
+    }
+  },
+  {
+    "timestamp": "2024-03-01T21:56:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "test",
+    "service": "RDP",
+    "status": "success",
+    "attempts": 4,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1960
+    }
+  },
+  {
+    "timestamp": "2024-03-04T00:01:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "bob",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 10,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3873
+    }
+  },
+  {
+    "timestamp": "2024-03-02T12:02:00Z",
+    "source_ip": "192.168.1.13",
+    "username": "charlie",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 1,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3761
+    }
+  },
+  {
+    "timestamp": "2024-03-05T11:47:00Z",
+    "source_ip": "192.168.1.17",
+    "username": "alice",
+    "service": "HTTP",
+    "status": "failed",
+    "attempts": 14,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2511
+    }
+  },
+  {
+    "timestamp": "2024-03-01T18:13:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "test",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 9,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2240
+    }
+  },
+  {
+    "timestamp": "2024-03-05T11:00:00Z",
+    "source_ip": "192.168.1.10",
+    "username": "admin",
+    "service": "SSH",
+    "status": "denied",
+    "attempts": 5,
+    "port": 21,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4967
+    }
+  },
+  {
+    "timestamp": "2024-03-02T08:10:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "admin",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 4,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 949
+    }
+  },
+  {
+    "timestamp": "2024-03-03T06:40:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "guest",
+    "service": "HTTP",
+    "status": "success",
+    "attempts": 12,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3448
+    }
+  },
+  {
+    "timestamp": "2024-03-05T06:40:00Z",
+    "source_ip": "192.168.1.18",
+    "username": "alice",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 3,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 740
+    }
+  },
+  {
+    "timestamp": "2024-03-01T14:21:00Z",
+    "source_ip": "192.168.1.9",
+    "username": "admin",
+    "service": "SSH",
+    "status": "failed",
+    "attempts": 13,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3865
+    }
+  },
+  {
+    "timestamp": "2024-03-02T03:42:00Z",
+    "source_ip": "192.168.1.18",
+    "username": "bob",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 6,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 1392
+    }
+  },
+  {
+    "timestamp": "2024-03-03T04:02:00Z",
+    "source_ip": "192.168.1.16",
+    "username": "charlie",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 12,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3122
+    }
+  },
+  {
+    "timestamp": "2024-03-05T17:21:00Z",
+    "source_ip": "192.168.1.16",
+    "username": "guest",
+    "service": "RDP",
+    "status": "failed",
+    "attempts": 15,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 291
+    }
+  },
+  {
+    "timestamp": "2024-03-04T14:05:00Z",
+    "source_ip": "192.168.1.12",
+    "username": "guest",
+    "service": "HTTPS",
+    "status": "denied",
+    "attempts": 14,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2987
+    }
+  },
+  {
+    "timestamp": "2024-03-04T06:12:00Z",
+    "source_ip": "192.168.1.11",
+    "username": "root",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 9,
+    "port": 22,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4722
+    }
+  },
+  {
+    "timestamp": "2024-03-06T03:22:00Z",
+    "source_ip": "192.168.1.8",
+    "username": "bob",
+    "service": "SSH",
+    "status": "failed",
+    "attempts": 6,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 2723
+    }
+  },
+  {
+    "timestamp": "2024-03-04T23:41:00Z",
+    "source_ip": "192.168.1.6",
+    "username": "guest",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 7,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4888
+    }
+  },
+  {
+    "timestamp": "2024-03-04T10:41:00Z",
+    "source_ip": "192.168.1.3",
+    "username": "root",
+    "service": "SSH",
+    "status": "success",
+    "attempts": 8,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4723
+    }
+  },
+  {
+    "timestamp": "2024-03-02T15:04:00Z",
+    "source_ip": "192.168.1.7",
+    "username": "guest",
+    "service": "FTP",
+    "status": "denied",
+    "attempts": 5,
+    "port": 443,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3676
+    }
+  },
+  {
+    "timestamp": "2024-03-04T21:19:00Z",
+    "source_ip": "192.168.1.5",
+    "username": "test",
+    "service": "HTTP",
+    "status": "denied",
+    "attempts": 11,
+    "port": 80,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 4962
+    }
+  },
+  {
+    "timestamp": "2024-03-01T09:47:00Z",
+    "source_ip": "192.168.1.12",
+    "username": "test",
+    "service": "FTP",
+    "status": "success",
+    "attempts": 4,
+    "port": 3389,
+    "details": {
+      "protocol": "TCP",
+      "bytes_sent": 3545
+    }
+  }
+]

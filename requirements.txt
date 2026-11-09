@@ -1,0 +1,13 @@
+flask
+flask-socketio
+pandas
+scikit-learn
+numpy
+werkzeug
+reportlab
+shap
+requests
+openpyxl
+arabic-reshaper
+python-bidi
+python-dotenv

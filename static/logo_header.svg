@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="hexBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#071828" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0c2a3e" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#0080b0"/>
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#00b8d9"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="hexglow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Hex outer glow layer -->
+  <polygon points="100,6 178,50 178,150 100,194 22,150 22,50"
+           fill="none" stroke="#00e5ff" stroke-width="5"
+           filter="url(#hexglow)" opacity="0.35"/>
+
+  <!-- Hex background fill -->
+  <polygon points="100,8 176,52 176,148 100,192 24,148 24,52"
+           fill="url(#hexBg)"/>
+
+  <!-- Hex border crisp -->
+  <polygon points="100,8 176,52 176,148 100,192 24,148 24,52"
+           fill="none" stroke="#00e5ff" stroke-width="2" opacity="0.9"/>
+
+  <!-- Inner hex ring (decorative) -->
+  <polygon points="100,22 162,58 162,142 100,178 38,142 38,58"
+           fill="none" stroke="#00e5ff" stroke-width="0.7" opacity="0.18"/>
+
+  <!-- Corner dots on hex vertices -->
+  <circle cx="100" cy="8"   r="3" fill="#00e5ff" filter="url(#glow)" opacity="0.8"/>
+  <circle cx="176" cy="52"  r="2.5" fill="#00e5ff" filter="url(#glow)" opacity="0.6"/>
+  <circle cx="176" cy="148" r="2.5" fill="#00e5ff" filter="url(#glow)" opacity="0.6"/>
+  <circle cx="100" cy="192" r="3" fill="#00e5ff" filter="url(#glow)" opacity="0.8"/>
+  <circle cx="24"  cy="148" r="2.5" fill="#00e5ff" filter="url(#glow)" opacity="0.6"/>
+  <circle cx="24"  cy="52"  r="2.5" fill="#00e5ff" filter="url(#glow)" opacity="0.6"/>
+
+  <!-- Shield -->
+  <path d="M100,40 L152,63 L152,108 Q152,150 100,168 Q48,150 48,108 L48,63 Z"
+        fill="rgba(0,229,255,0.06)" stroke="url(#shieldGrad)" stroke-width="2.5"
+        stroke-linejoin="round" filter="url(#softglow)"/>
+
+  <!-- Shield inner highlight (top arc) -->
+  <path d="M100,46 L147,67 L147,70 Q123.5,60 100,57 Q76.5,60 53,70 L53,67 Z"
+        fill="rgba(0,229,255,0.12)"/>
+
+  <!-- Neural network connections (drawn before nodes) -->
+  <!-- Root → Layer 2 -->
+  <line x1="100" y1="84" x2="80"  y2="112" stroke="#00e5ff" stroke-width="1.6" opacity="0.55"/>
+  <line x1="100" y1="84" x2="120" y2="112" stroke="#00e5ff" stroke-width="1.6" opacity="0.55"/>
+  <!-- Layer 2 → Layer 3 -->
+  <line x1="80"  y1="112" x2="68"  y2="140" stroke="#00e5ff" stroke-width="1.1" opacity="0.38"/>
+  <line x1="80"  y1="112" x2="93"  y2="143" stroke="#00e5ff" stroke-width="1.1" opacity="0.38"/>
+  <line x1="120" y1="112" x2="107" y2="143" stroke="#00e5ff" stroke-width="1.1" opacity="0.38"/>
+  <line x1="120" y1="112" x2="132" y2="140" stroke="#00e5ff" stroke-width="1.1" opacity="0.38"/>
+  <!-- Cross connections (AI/fully-connected style) -->
+  <line x1="80"  y1="112" x2="107" y2="143" stroke="#00e5ff" stroke-width="0.6" opacity="0.18"/>
+  <line x1="120" y1="112" x2="93"  y2="143" stroke="#00e5ff" stroke-width="0.6" opacity="0.18"/>
+  <line x1="80"  y1="112" x2="132" y2="140" stroke="#00e5ff" stroke-width="0.5" opacity="0.12"/>
+  <line x1="120" y1="112" x2="68"  y2="140" stroke="#00e5ff" stroke-width="0.5" opacity="0.12"/>
+
+  <!-- Root node (Layer 1) -->
+  <circle cx="100" cy="84" r="10" fill="#071828" stroke="#00e5ff" stroke-width="2.2" filter="url(#glow)"/>
+  <circle cx="100" cy="84" r="4"  fill="url(#nodeGrad)" filter="url(#glow)"/>
+
+  <!-- Layer 2 nodes -->
+  <circle cx="80"  cy="112" r="7.5" fill="#071828" stroke="#00e5ff" stroke-width="1.8" filter="url(#softglow)"/>
+  <circle cx="80"  cy="112" r="3"   fill="url(#nodeGrad)"/>
+  <circle cx="120" cy="112" r="7.5" fill="#071828" stroke="#00e5ff" stroke-width="1.8" filter="url(#softglow)"/>
+  <circle cx="120" cy="112" r="3"   fill="url(#nodeGrad)"/>
+
+  <!-- Layer 3 nodes -->
+  <circle cx="68"  cy="140" r="5.5" fill="#071828" stroke="#00e5ff" stroke-width="1.5" opacity="0.88"/>
+  <circle cx="68"  cy="140" r="2.2" fill="#00e5ff" opacity="0.88"/>
+  <circle cx="93"  cy="143" r="5.5" fill="#071828" stroke="#00e5ff" stroke-width="1.5" opacity="0.88"/>
+  <circle cx="93"  cy="143" r="2.2" fill="#00e5ff" opacity="0.88"/>
+  <circle cx="107" cy="143" r="5.5" fill="#071828" stroke="#00e5ff" stroke-width="1.5" opacity="0.88"/>
+  <circle cx="107" cy="143" r="2.2" fill="#00e5ff" opacity="0.88"/>
+  <circle cx="132" cy="140" r="5.5" fill="#071828" stroke="#00e5ff" stroke-width="1.5" opacity="0.88"/>
+  <circle cx="132" cy="140" r="2.2" fill="#00e5ff" opacity="0.88"/>
+
+  <!-- Side circuit traces (decorative) -->
+  <path d="M24,90 L38,90 L42,86" stroke="#00e5ff" stroke-width="1" opacity="0.28" fill="none"/>
+  <circle cx="38" cy="90" r="1.5" fill="#00e5ff" opacity="0.4"/>
+  <path d="M176,90 L162,90 L158,86" stroke="#00e5ff" stroke-width="1" opacity="0.28" fill="none"/>
+  <circle cx="162" cy="90" r="1.5" fill="#00e5ff" opacity="0.4"/>
+
+  <!-- Bottom scan line effect -->
+  <path d="M38,158 L162,158" stroke="#00e5ff" stroke-width="0.5" opacity="0.15"/>
+</svg>

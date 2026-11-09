@@ -51,7 +51,7 @@ def _summary_chart(sv: np.ndarray, feature_cols: list) -> str:
         ax.tick_params(colors="#8b8fb8", labelsize=8)
         for spine in ax.spines.values():
             spine.set_visible(False)
-        ax.xaxis.grid(True, color="rgba(255,255,255,0.05)", linestyle="--",
+        ax.xaxis.grid(True, color=(1, 1, 1, 0.05), linestyle="--",
                       linewidth=0.5)
         ax.set_axisbelow(True)
 
@@ -63,6 +63,7 @@ def _summary_chart(sv: np.ndarray, feature_cols: list) -> str:
         plt.tight_layout()
         return _chart_to_base64()
     except Exception:
+        plt.close("all")
         return ""
 
 
@@ -94,13 +95,14 @@ def _waterfall_chart(row_sv: np.ndarray, feature_cols: list,
         ax.tick_params(colors="#8b8fb8", labelsize=8)
         for spine in ax.spines.values():
             spine.set_visible(False)
-        ax.xaxis.grid(True, color="rgba(255,255,255,0.05)",
+        ax.xaxis.grid(True, color=(1, 1, 1, 0.05),
                       linestyle="--", linewidth=0.5)
         ax.set_axisbelow(True)
 
         plt.tight_layout()
         return _chart_to_base64()
     except Exception:
+        plt.close("all")
         return ""
 
 
@@ -115,9 +117,14 @@ def explain(model, X_all: np.ndarray, feature_cols: list,
         explainer   = shap.TreeExplainer(model)
         shap_values = explainer.shap_values(X_all)
 
-        sv = (shap_values[1]
-              if isinstance(shap_values, list) and len(shap_values) == 2
-              else shap_values)
+        # Older SHAP returns a list [class0, class1]; newer SHAP returns one
+        # array shaped (samples, features, classes). Keep the "suspicious" class.
+        if isinstance(shap_values, list) and len(shap_values) == 2:
+            sv = shap_values[1]
+        elif getattr(shap_values, "ndim", 2) == 3:
+            sv = shap_values[:, :, -1]
+        else:
+            sv = shap_values
 
         mean_abs   = np.abs(sv).mean(axis=0)
         sorted_idx = np.argsort(mean_abs)[::-1]

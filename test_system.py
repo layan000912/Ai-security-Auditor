@@ -137,3 +137,21 @@ def test_syslog_parsing():
         assert "success" in statuses
     finally:
         os.remove(tmp_path)
+
+
+def test_shap_explanation_is_produced():
+    """Regression: newer SHAP returns a 3D array; the explainer must still work."""
+    import numpy as np
+    from sklearn.ensemble import RandomForestClassifier
+    from models import shap_explainer
+
+    rng = np.random.default_rng(0)
+    X = rng.random((120, 5))
+    y = (X[:, 0] + X[:, 1] > 1).astype(int)
+    model = RandomForestClassifier(n_estimators=30, max_depth=6, random_state=0).fit(X, y)
+
+    result = shap_explainer.explain(model, X, list("abcde"), y == 1)
+
+    assert result["available"] is True
+    assert result["total_explained"] > 0
+    assert len(result["feature_importance"]) == 5

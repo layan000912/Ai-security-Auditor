@@ -345,7 +345,12 @@ async function loadAlerts() {
   const rec  = await apiFetch(`/api/history/${id}`);
   scanDate = (rec.scanned_at||'').slice(0,10);
 
-  allAlerts = Array.isArray(data) ? data : [];
+  // The API returns {level, title, message}; this page works with {severity, description}.
+  allAlerts = (Array.isArray(data) ? data : []).map(a => ({
+    ...a,
+    severity:    a.severity || (a.level ? a.level.charAt(0).toUpperCase() + a.level.slice(1) : 'Low'),
+    description: a.description || a.message || ''
+  }));
 
   const cnt = { Critical:0, High:0, Medium:0, Low:0 };
   allAlerts.forEach(a => { const s = a.severity||'Low'; cnt[s] = (cnt[s]||0)+1; });

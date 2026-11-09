@@ -44,11 +44,14 @@ app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY") or os.urandom(24)
 # Debug mode is OFF unless explicitly enabled (FLASK_DEBUG=1). Never enable it on a real server.
 DEBUG = os.environ.get("FLASK_DEBUG", "0").strip().lower() in ("1", "true", "yes")
 
+# Port to listen on (default 5000). On macOS, AirPlay Receiver may occupy 5000 - set PORT=5001 if so.
+PORT = int(os.environ.get("PORT", "5000"))
+
 # WebSocket origins are restricted to the local dev URL(s); override with CORS_ORIGINS (comma-separated).
 CORS_ORIGINS = [
     o.strip()
     for o in os.environ.get(
-        "CORS_ORIGINS", "http://localhost:5000,http://127.0.0.1:5000"
+        "CORS_ORIGINS", f"http://localhost:{PORT},http://127.0.0.1:{PORT}"
     ).split(",")
     if o.strip()
 ]
@@ -684,12 +687,12 @@ def api_soar_stats():
 if __name__ == "__main__":
     print("\n🛡  AI Security Auditor v10")
     print("=" * 40)
-    print("  Dashboard:  http://localhost:5000")
-    print("  History:    http://localhost:5000/history")
-    print("  Alerts:     http://localhost:5000/alerts")
-    print("  Timeline:   http://localhost:5000/timeline")
-    print("  Map:        http://localhost:5000/map")
-    print("  Monitor:    http://localhost:5000/monitor")
-    print("  IP Analytics: http://localhost:5000/ip-analytics")
+    print(f"  Dashboard:  http://localhost:{PORT}")
+    print(f"  History:    http://localhost:{PORT}/history")
+    print(f"  Alerts:     http://localhost:{PORT}/alerts")
+    print(f"  Timeline:   http://localhost:{PORT}/timeline")
+    print(f"  Map:        http://localhost:{PORT}/map")
+    print(f"  Monitor:    http://localhost:{PORT}/monitor")
+    print(f"  IP Analytics: http://localhost:{PORT}/ip-analytics")
     print("=" * 40 + "\n")
-    socketio.run(app, debug=DEBUG, port=5000)
+    socketio.run(app, debug=DEBUG, port=PORT)

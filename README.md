@@ -60,7 +60,7 @@ Measured on the bundled sample dataset (`data/sample_logs.csv`, 300 records, 80/
 
 Selected model: precision 98.1%, recall 89.7%.
 
-Testing: **20/20** documented functional test cases passed (upload formats, detection rules, model selection, SHAP, MITRE mapping, alerts, exports, real-time monitor, history, rate limiting, batch analysis), plus **10 automated unit tests** (see below).
+Testing: **20/20** documented functional test cases passed (upload formats, detection rules, model selection, SHAP, MITRE mapping, alerts, exports, real-time monitor, history, rate limiting, batch analysis), plus **11 automated unit tests** (see below).
 
 > These figures come from a small, synthetic sample set intended to validate the pipeline end to end. See *Limitations*.
 
@@ -85,6 +85,8 @@ python app.py
 
 Open <http://localhost:5000> and upload `data/sample_logs.csv` (or the `.json` / `.log` samples) to try it.
 
+> On macOS, port 5000 is often taken by AirPlay Receiver. If you see a 403 or a blank page, run on another port, e.g. `PORT=5001 python app.py`, and open that port instead.
+
 ### Configuration
 
 Settings are read from environment variables or a local `.env` file (never committed):
@@ -92,8 +94,9 @@ Settings are read from environment variables or a local `.env` file (never commi
 | Variable | Default | Purpose |
 |---|---|---|
 | `SECRET_KEY` | random per start | Flask session signing key |
+| `PORT` | `5000` | Port the server listens on |
 | `FLASK_DEBUG` | `0` (off) | Debug mode - for local development only |
-| `CORS_ORIGINS` | `http://localhost:5000,http://127.0.0.1:5000` | Allowed WebSocket origins |
+| `CORS_ORIGINS` | `http://localhost:<PORT>,http://127.0.0.1:<PORT>` | Allowed WebSocket origins |
 | `TRUST_PROXY` | `0` | Set to `1` behind a reverse proxy to read `X-Forwarded-For` |
 | `ABUSEIPDB_API_KEY` | empty | Optional; without it the threat-intelligence panel shows mock data |
 
@@ -116,7 +119,7 @@ python -m pytest test_system.py -v
 | **Analysis history** | **SOAR operations center** |
 | ![Analysis history](docs/screenshots/history.png) | ![SOAR operations](docs/screenshots/soar.png) |
 
-*Screenshots were taken while analyzing the bundled `sample_logs.log`; the metrics in the Results section above are for `sample_logs.csv`.*
+*Screenshots were taken after analyzing the bundled sample files; the dashboard, evaluation, SHAP, alerts, IP and dataset pages show `sample_logs.csv`, the same dataset as the Results section.*
 
 ## Project structure
 

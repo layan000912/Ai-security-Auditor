@@ -106,15 +106,17 @@ python -m pytest test_system.py -v
 
 ## Screenshots
 
-<!-- Add PNG files to docs/screenshots/ and uncomment the images below. -->
-
-| Dashboard | SHAP explanation |
+| Dashboard | Model evaluation |
 |---|---|
-| <!-- ![Dashboard](docs/screenshots/dashboard.png) --> *coming soon* | <!-- ![SHAP](docs/screenshots/shap.png) --> *coming soon* |
+| ![Dashboard](docs/screenshots/dashboard.png) | ![Model evaluation](docs/screenshots/evaluation.png) |
+| **SHAP explanation** | **Alerts center** |
+| ![SHAP explanation](docs/screenshots/shap.png) | ![Alerts center](docs/screenshots/alerts.png) |
+| **IP analytics** | **Dataset statistics** |
+| ![IP analytics](docs/screenshots/ip-analytics.png) | ![Dataset statistics](docs/screenshots/dataset-stats.png) |
+| **Analysis history** | **SOAR operations center** |
+| ![Analysis history](docs/screenshots/history.png) | ![SOAR operations](docs/screenshots/soar.png) |
 
-| Model evaluation | SOAR operations |
-|---|---|
-| <!-- ![Evaluation](docs/screenshots/evaluation.png) --> *coming soon* | <!-- ![SOAR](docs/screenshots/soar.png) --> *coming soon* |
+*Screenshots were taken while analyzing the bundled `sample_logs.log`; the metrics in the Results section above are for `sample_logs.csv`.*
 
 ## Project structure
 

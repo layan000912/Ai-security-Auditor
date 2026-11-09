@@ -8,6 +8,13 @@ from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+# Load settings from a local .env file (ignored by git) before anything reads os.environ.
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 from flask import Flask, request, jsonify, render_template, send_file
 from flask_socketio import SocketIO, emit
 
@@ -34,7 +41,19 @@ app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY") or os.urandom(24)
 
-socketio = SocketIO(app, cors_allowed_origins="*")
+# Debug mode is OFF unless explicitly enabled (FLASK_DEBUG=1). Never enable it on a real server.
+DEBUG = os.environ.get("FLASK_DEBUG", "0").strip().lower() in ("1", "true", "yes")
+
+# WebSocket origins are restricted to the local dev URL(s); override with CORS_ORIGINS (comma-separated).
+CORS_ORIGINS = [
+    o.strip()
+    for o in os.environ.get(
+        "CORS_ORIGINS", "http://localhost:5000,http://127.0.0.1:5000"
+    ).split(",")
+    if o.strip()
+]
+
+socketio = SocketIO(app, cors_allowed_origins=CORS_ORIGINS)
 init_db()
 
 _rate_store = defaultdict(list)
@@ -673,4 +692,4 @@ if __name__ == "__main__":
     print("  Monitor:    http://localhost:5000/monitor")
     print("  IP Analytics: http://localhost:5000/ip-analytics")
     print("=" * 40 + "\n")
-    socketio.run(app, debug=True, port=5000)
+    socketio.run(app, debug=DEBUG, port=5000)

@@ -6,6 +6,7 @@ numpy
 werkzeug
 reportlab
 shap
+matplotlib
 requests
 openpyxl
 arabic-reshaper

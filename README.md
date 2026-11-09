@@ -1,113 +1,145 @@
 # AI Security Auditor
 
-نظام تحليل سجلات أمنية بالذكاء الاصطناعي، طورته كمشروع تدريب تعاوني (COOP) في شركة جودين. الفكرة إن النظام ياخذ ملف سجلات (log file) ويحلله تلقائياً، يكتشف النشاط المشبوه بقواعد ثابتة ونموذج تعلم آلي مع بعض، ويفسر كل قرار بدل ما يرمي رقم بدون تفسير.
+An explainable, web-based system that analyzes security log files and flags suspicious activity by combining **rule-based detection** with **machine learning**. Every flagged record comes with a reason, and every threat is mapped to the **MITRE ATT&CK** framework.
 
-## تشغيل المشروع
+Built during a 28-week cooperative (COOP) training at JODAYN as a graduation project at the University of Ha'il.
+
+## Why this project
+
+Security servers produce thousands of log entries a day, so reading them by hand does not scale. Signature-based tools miss attack patterns they have not seen before, and many AI tools return a verdict with no explanation. AI Security Auditor addresses all three problems at once: it automates the analysis, uses an anomaly-detection model alongside fixed rules, and explains each decision.
+
+## Features
+
+- **Multi-format ingestion** - upload CSV, JSON, Syslog, LOG or TXT files (up to 16 MB); columns are normalized automatically.
+- **Hybrid detection** - four rule-based checks (excessive attempts, failed logins, suspicious usernames, repeated IPs) plus two ML models.
+- **Automatic model selection** - Isolation Forest and Random Forest are trained side by side and the better one is chosen by **F1 Score**, not accuracy, because security data is heavily imbalanced.
+- **Explainable AI** - SHAP values show which features pushed each record toward "suspicious".
+- **MITRE ATT&CK mapping** - detected behavior is linked to techniques such as T1110 (Brute Force) and T1078 (Valid Accounts).
+- **Severity-ranked alerts** - Critical, High, Medium and Low, with search and filters.
+- **Analytics views** - risk dashboard, timeline, per-IP analytics, dataset statistics, and model evaluation (confusion matrix, model comparison).
+- **Geographic map** - attack-source locations via IP geolocation.
+- **Real-time monitor** - paste log lines and get instant keyword/rule-based verdicts streamed over WebSocket (no file upload).
+- **SOAR workflow** - case status and assignment, analyst feedback (correct / wrong), and model retraining after enough feedback is collected.
+- **Reporting** - export results as PDF (with Arabic support) or multi-sheet Excel; compare any two past analyses.
+
+## How it works
+
+```
+Upload file
+   -> preprocess.py      parse and clean (CSV / JSON / Syslog)
+   -> rules_engine.py    4 rule-based checks
+   -> ai_model.py        train Isolation Forest + Random Forest, pick best by F1
+   -> combined flag      suspicious = rule flag OR AI flag
+   -> shap_explainer.py  explain each suspicious record
+   -> mitre.py / alerts  map to MITRE ATT&CK and rank by severity
+   -> Dashboard, history (SQLite), PDF / Excel export
+```
+
+The two detectors are combined with **OR** on purpose: in security, missing a real attack costs far more than reviewing an extra alert.
+
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| Language | Python 3.10+ |
+| Backend | Flask, Flask-SocketIO (WebSocket) |
+| Machine learning | scikit-learn (Isolation Forest, Random Forest), pandas, NumPy |
+| Explainability | SHAP, Matplotlib |
+| Database | SQLite |
+| Reporting | ReportLab (PDF), openpyxl (Excel), arabic-reshaper + python-bidi |
+| Frontend | HTML, CSS, JavaScript, Chart.js, Socket.IO client |
+
+## Results
+
+Measured on the bundled sample dataset (`data/sample_logs.csv`, 300 records, 80/20 stratified split, fixed random seed):
+
+| Model | Accuracy | F1 Score |
+|---|---|---|
+| Isolation Forest | 55.0% | 69.7% |
+| **Random Forest (selected)** | **88.3%** | **93.7%** |
+
+Selected model: precision 98.1%, recall 89.7%.
+
+Testing: **20/20** documented functional test cases passed (upload formats, detection rules, model selection, SHAP, MITRE mapping, alerts, exports, real-time monitor, history, rate limiting, batch analysis), plus **10 automated unit tests** (see below).
+
+> These figures come from a small, synthetic sample set intended to validate the pipeline end to end. See *Limitations*.
+
+## Getting started
 
 ```bash
+# 1. Clone and enter the project
+git clone https://github.com/layan000912/Ai-security-Auditor.git
+cd Ai-security-Auditor
+
+# 2. Create a virtual environment and install dependencies
+python3 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+
+# 3. (Optional) configure settings
+cp .env.example .env               # then edit .env
+
+# 4. Run
 python app.py
 ```
 
-بعدها افتح المتصفح على `http://localhost:5000`
+Open <http://localhost:5000> and upload `data/sample_logs.csv` (or the `.json` / `.log` samples) to try it.
 
-## هيكل المشروع
+### Configuration
 
-```
-ai-security-011/
-├── app.py                     ← Flask + SocketIO، نقطة الدخول لكل شي
-├── requirements.txt
-├── data/
-│   ├── auditor.db              ← قاعدة بيانات SQLite لكل التحليلات المحفوظة
-│   ├── sample_logs.csv
-│   ├── sample_logs.json
-│   └── sample_logs.log
-├── models/
-│   ├── preprocess.py           ← قراءة وتنظيف الملف (CSV / JSON / Syslog)
-│   ├── rules_engine.py         ← القواعد الأربع الثابتة لكشف التهديدات
-│   ├── ai_model.py             ← Isolation Forest + Random Forest، واختيار الأفضل بـ F1
-│   └── shap_explainer.py       ← تفسير قرارات النموذج بـ SHAP
-├── utils/
-│   ├── helpers.py               ← رفع الملفات والتحقق منها
-│   ├── alerts.py                 ← توليد التنبيهات حسب الخطورة
-│   ├── database.py               ← طبقة SQLite
-│   ├── pdf_report.py             ← تصدير تقرير PDF
-│   ├── excel_export.py           ← تصدير ملف Excel متعدد الأوراق
-│   ├── geoip.py                   ← تحديد موقع الـ IP جغرافياً
-│   ├── mitre.py                    ← ربط التهديدات بإطار MITRE ATT&CK
-│   ├── feedback.py                  ← حفظ ملاحظات المحلل وإعادة تدريب النموذج
-│   └── threat_intel.py               ← إثراء بيانات الـ IP بمعلومات تهديد إضافية
-└── templates/                          ← كل صفحات الواجهة (13 صفحة)
-```
+Settings are read from environment variables or a local `.env` file (never committed):
 
-## كيف يشتغل النظام
+| Variable | Default | Purpose |
+|---|---|---|
+| `SECRET_KEY` | random per start | Flask session signing key |
+| `FLASK_DEBUG` | `0` (off) | Debug mode - for local development only |
+| `CORS_ORIGINS` | `http://localhost:5000,http://127.0.0.1:5000` | Allowed WebSocket origins |
+| `TRUST_PROXY` | `0` | Set to `1` behind a reverse proxy to read `X-Forwarded-For` |
+| `ABUSEIPDB_API_KEY` | empty | Optional; without it the threat-intelligence panel shows mock data |
 
-أول شي، أرفع ملف (CSV أو JSON أو LOG أو TXT)، وملف preprocess.py يتعرف على نوعه وينظفه ويوحد أسماء الأعمدة تلقائياً، حتى لو الأعمدة مسمّاة بشكل مختلف بين ملف وملف.
-
-بعدها يشتغل الكشف على مسارين مع بعض: محرك القواعد الثابتة (rules_engine.py) يفحص أربع حالات معروفة (محاولات دخول كثيرة، فشل تسجيل دخول، اسم مستخدم مشبوه، تكرار IP)، وبنفس الوقت نموذجا تعلم آلي (Isolation Forest وRandom Forest) يتدربون على البيانات ويتنافسون، والأفضل بينهم يُختار بناءً على F1 Score مو الدقة، عشان البيانات الأمنية غير متوازنة أصلاً.
-
-أي سجل يوصف بأنه مشبوه، من القواعد أو من النموذج، يتفسر بـ SHAP عشان يبين وش الأسباب اللي خلت النظام يشك فيه، ويترابط تلقائياً بتقنية من MITRE ATT&CK إذا انطبقت عليه.
-
-كل هذا يظهر في Dashboard فيه أرقام سريعة، رسوم بيانية، خريطة جغرافية لمصادر الهجمات، وجدول قابل للفلترة والبحث.
-
-## الأعمدة المدعومة (مرنة)
-
-| العمود | مثال |
-|--------|------|
-| timestamp / date | 2024-01-01 08:00:00 |
-| ip / source_ip | 192.168.1.10 |
-| username / user | admin |
-| service | SSH |
-| status | failed |
-| attempts | 7 |
-| port | 22 |
-
-## صفحات النظام
-
-| الصفحة | الرابط | وش فيها |
-|--------|--------|---------|
-| Dashboard | `/` | رفع الملف والنتائج الرئيسية |
-| History | `/history` | كل عمليات التحليل السابقة + مقارنة بينها |
-| Alerts | `/alerts` | مركز التنبيهات مرتبة حسب الخطورة |
-| SHAP Explain | `/explain` | تفسير قرارات النموذج لكل سجل مشبوه |
-| Geo Map | `/map` | خريطة جغرافية لمصادر الهجمات |
-| Timeline | `/timeline` | توزيع الأنشطة على مدار الوقت |
-| IP Analytics | `/ip-analytics` | تفاصيل كل IP على حدة (fail rate، الحسابات المستهدفة) |
-| Real-Time Monitor | `/monitor` | تحليل لحظي عبر WebSocket بدون رفع ملف |
-| MITRE / Evaluation | `/evaluation` | مقارنة أداء النموذجين + Confusion Matrix |
-| Dataset Stats | `/dataset-stats` | إحصائيات الملف المرفوع قبل التحليل |
-| SOAR Operations | `/soar` | إدارة الحالات، ملاحظات المحلل، وإعادة تدريب النموذج |
-| Methodology | `/methodology` | شرح بصري لمنهجية النظام |
-
-## API Endpoints
-
-| Method | Endpoint | الوصف |
-|--------|----------|-------|
-| POST | `/analyze` | تحليل ملف مرفوع |
-| POST | `/batch-analyze` | تحليل عدة ملفات مرة وحدة |
-| GET | `/api/history` | كل نتائج التحليل |
-| GET | `/api/history/<id>` | تفاصيل تحليل واحد |
-| DELETE | `/api/history/<id>` | حذف سجل |
-| GET | `/api/alerts/<id>` | تنبيهات تحليل معين |
-| GET | `/api/report/<id>` | تصدير PDF |
-| GET | `/api/export/excel/<id>` | تصدير Excel |
-| GET | `/api/timeline/<id>` | بيانات المخطط الزمني |
-| GET | `/api/compare?id1=&id2=` | مقارنة تحليلين |
-| GET | `/api/geo/<id>` | بيانات الخريطة الجغرافية |
-| GET | `/api/ip-analytics/<id>` | تفاصيل كل IP |
-| GET | `/api/evaluation/<id>` | مقارنة أداء النموذجين |
-| GET | `/api/dataset-stats/<id>` | إحصائيات الملف |
-| GET / PUT | `/api/case/<id>/status`, `/assign` | إدارة حالة القضية بالـ SOAR |
-| GET | `/api/threat-intel/<id>` | إثراء معلومات التهديد |
-| POST | `/api/feedback` | تسجيل ملاحظة المحلل على قرار الذكاء الاصطناعي |
-| GET | `/api/feedback/stats` | إحصائيات الملاحظات المجمّعة |
-| POST | `/api/model/retrain` | إعادة تدريب النموذج بعد جمع 10 ملاحظات |
-| GET | `/api/soar/stats` | إحصائيات عامة عن كل القضايا |
-
-## اختبارات المشروع
-
-يوجد ملف `test_system.py` فيه 10 اختبارات وحدة تغطي القواعد، معالجة الملفات، ونموذج الذكاء الاصطناعي. تشغيلها:
+## Running the tests
 
 ```bash
+pip install pytest
 python -m pytest test_system.py -v
 ```
+
+## Screenshots
+
+<!-- Add PNG files to docs/screenshots/ and uncomment the images below. -->
+
+| Dashboard | SHAP explanation |
+|---|---|
+| <!-- ![Dashboard](docs/screenshots/dashboard.png) --> *coming soon* | <!-- ![SHAP](docs/screenshots/shap.png) --> *coming soon* |
+
+| Model evaluation | SOAR operations |
+|---|---|
+| <!-- ![Evaluation](docs/screenshots/evaluation.png) --> *coming soon* | <!-- ![SOAR](docs/screenshots/soar.png) --> *coming soon* |
+
+## Project structure
+
+```
+app.py                  Flask + SocketIO entry point and API routes
+models/
+  preprocess.py         file type detection, parsing, cleaning
+  rules_engine.py       rule-based detection
+  ai_model.py           Isolation Forest + Random Forest, F1-based selection
+  shap_explainer.py     SHAP explanations and charts
+utils/                  database, alerts, MITRE mapping, GeoIP, threat intel,
+                        feedback/retraining, PDF and Excel export
+templates/              HTML pages (dashboard, history, alerts, SHAP, map, ...)
+static/                 CSS and JavaScript
+data/                   sample log files (the SQLite database is created on first run)
+test_system.py          unit tests
+```
+
+## Limitations and future work
+
+- The Random Forest is trained on the rule engine's own flags, so it learns to generalize the rules; Isolation Forest is the component that can surface genuinely new anomalies.
+- Results are from a small synthetic dataset; a real deployment should retrain on the organization's own traffic.
+- Single-user: there is no authentication or role-based access control yet, and SQLite is not designed for many concurrent writers.
+- Planned: authentication and roles, SIEM integration (Splunk / Elastic), sequence models (LSTM) for temporal patterns, and automated response actions.
+
+## Author
+
+Layan Ayad Alshammari - College of Computer Science and Engineering, University of Ha'il. COOP training at JODAYN (Innovation Department).
